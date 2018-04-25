@@ -8,10 +8,14 @@
           <router-link class="post-title" :to="post.permalink">{{ post.attributes.title || post.slug }}</router-link>
           <div class="post-excerpt" v-html="post.excerpt"></div>
         </div>
-        <div class="pagination">
-          <router-link v-if="page.pagination.hasPrev" :to="page.pagination.prevLink">Prev</router-link>
-          <router-link v-if="page.pagination.hasNext" :to="page.pagination.nextLink">Next</router-link>
-        </div>
+      </div>
+      <div class="pagination" v-if="page.pagination">
+        <router-link v-if="page.pagination.hasPrev" :to="page.pagination.prevLink">Prev</router-link>
+        <router-link v-if="page.pagination.hasNext" :to="page.pagination.nextLink">Next</router-link>
+      </div>
+      <div v-else>
+        Try adding some markdown files in <code>./source/_posts</code> directory.
+        <div class="page-content" v-html="page.body"></div>
       </div>
     </div>
   </div>
@@ -24,7 +28,7 @@ export default {
   head() {
     return {
       title:
-        this.page.pagination.current === 1
+        !this.page.pagination || this.page.pagination.current === 1
           ? title
           : `${title} - page ${this.page.pagination.current}`,
       meta: [
