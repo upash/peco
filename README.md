@@ -13,7 +13,7 @@ It is good. I don't think I'll ever use Hexo again.
 
 ## Installation
 
-Not yet available on npm, just `yarn add egojump/peco --dev` for now.
+Not yet available on npm, just `yarn add egojump/peco` for now.
 
 ## How to use?
 
