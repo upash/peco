@@ -1,0 +1,68 @@
+{
+  "name": "peco",
+  "version": "0.0.0",
+  "description": "Documentation website done right.",
+  "repository": {
+    "url": "egoist/peco",
+    "type": "git"
+  },
+  "bin": "bin/cli.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "scripts": {
+    "test": "echo 'no tests!'",
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove Peco? You can now donate to support the author:\\u001b[22m\\u001b[39m\\n> \\u001b[36mhttps://patreon.com/egoist\\u001b[39m')\""
+  },
+  "author": "egoist <0x142857@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "autoprefixer": "^8.3.0",
+    "babel-loader": "^8.0.0-beta.2",
+    "cac": "^5.0.10",
+    "chokidar": "^2.0.2",
+    "connect-history-api-fallback": "^1.5.0",
+    "css-loader": "^0.28.11",
+    "express": "^4.16.3",
+    "fast-async": "^7.0.4",
+    "file-loader": "^1.1.11",
+    "fs-extra": "^5.0.0",
+    "globby": "^8.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "install-packages": "^0.1.1",
+    "joycon": "^1.0.2",
+    "js-yaml": "^3.11.0",
+    "markdown-it": "^8.4.1",
+    "mini-css-extract-plugin": "^0.4.0",
+    "pify": "^3.0.0",
+    "postcss-loader": "^2.1.4",
+    "time-fix-plugin": "^2.0.0",
+    "url-loader": "^1.0.1",
+    "use-config": "^2.0.4",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.0.0-rc.2",
+    "vue-meta": "^1.5.0",
+    "vue-router": "^3.0.1",
+    "vue-server-renderer": "^2.5.16",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.6.0",
+    "webpack-chain": "^4.6.0",
+    "webpack-dev-middleware": "^3.1.2",
+    "webpack-hot-client": "^2.2.2",
+    "webpack-node-externals": "^1.7.2",
+    "webpackbar": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.2",
+    "@types/jest": "^22.2.3",
+    "@types/node": "^9.6.5",
+    "@types/webpack": "^4.1.3",
+    "axios": "^0.18.0",
+    "jest": "^22.4.3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "module": "commonjs",
+    "lib": [
+      "es2015",
+      "es2017"
+    ]
+  },
+  "include": [
+    "lib/**/*.js"
+  ]
+}

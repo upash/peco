@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auto: env 1`] = `
+Object {
+  "excerpt": "<p>hello world</p>
+",
+  "excerpted": true,
+  "manualExcerpt": false,
+}
+`;
+
+exports[`auto: html 1`] = `
+"<h1>hello</h1>
+<p>hello world</p>
+<p>oops</p>
+"
+`;
+
+exports[`manually: env 1`] = `
+Object {
+  "excerpt": "<h1>hello</h1>
+",
+  "excerpted": true,
+  "manualExcerpt": true,
+}
+`;
+
+exports[`manually: html 1`] = `
+"<h1>hello</h1>
+<!-- more -->
+<p>hello world</p>
+<p><strong>hehe</strong></p>
+<!-- foo -->
+<p>oops</p>
+"
+`;
+
+exports[`paragraph only: false: env 1`] = `
+Object {
+  "excerpt": "<h1>hello</h1>
+<p>hello world</p>
+",
+  "excerpted": true,
+  "manualExcerpt": false,
+}
+`;
+
+exports[`paragraph only: false: html 1`] = `
+"<h1>hello</h1>
+<p>hello world</p>
+<p>oops</p>
+"
+`;

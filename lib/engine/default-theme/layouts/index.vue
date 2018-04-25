@@ -1,0 +1,70 @@
+<template>
+  <div class="main">
+    <div class="container">
+      <h1 class="title">{{ title }}</h1>
+      <h2 class="description">{{ description }}</h2>
+      <div class="post-list">
+        <div class="post" v-for="post in page.posts" :key="post.slug">
+          <router-link class="post-title" :to="post.permalink">{{ post.attributes.title || post.slug }}</router-link>
+          <div class="post-excerpt" v-html="post.excerpt"></div>
+        </div>
+        <div class="pagination">
+          <router-link v-if="page.pagination.hasPrev" :to="page.pagination.prevLink">Prev</router-link>
+          <router-link v-if="page.pagination.hasNext" :to="page.pagination.nextLink">Next</router-link>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { title, description } from '@site-meta'
+
+export default {
+  head() {
+    return {
+      title:
+        this.page.pagination.current === 1
+          ? title
+          : `${title} - page ${this.page.pagination.current}`,
+      meta: [
+        {
+          name: 'description',
+          content: description
+        }
+      ]
+    }
+  },
+
+  data() {
+    return {
+      title,
+      description
+    }
+  },
+
+  props: ['page']
+}
+</script>
+
+<style src="../styles/main.css"></style>
+
+<style scoped>
+.title {
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+.description {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.post-list {
+  margin-top: 30px;
+}
+
+.post-title {
+  font-size: 1.4rem;
+}
+</style>
