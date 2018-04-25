@@ -20,3 +20,10 @@ body {
   max-width: 768px;
   margin: 0 auto;
 }
+
+.page-enter-active, .page-leave-active {
+  transition: opacity .15s
+}
+.page-enter, .page-leave-active {
+  opacity: 0
+}
