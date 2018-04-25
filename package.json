@@ -42,6 +42,7 @@
     "mini-css-extract-plugin": "^0.4.0",
     "pify": "^3.0.0",
     "postcss-loader": "^2.1.4",
+    "promise-polyfill": "^7.1.2",
     "time-fix-plugin": "^2.0.0",
     "url-loader": "^1.0.1",
     "use-config": "^2.0.4",
