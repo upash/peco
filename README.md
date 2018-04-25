@@ -32,6 +32,11 @@ Documentations are coming soon.. (hopefully on May 1st)
 
 Find bugs, spread the words, share your ideas.
 
+```bash
+yarn
+yarn example
+```
+
 ---
 
 <img src="https://cdn.rawgit.com/egoist/abf92e5f6adfa4cbb47651c1cdb3630d/raw/8c2b6488e353c2b6ca79cce4b15f0f43493aedb6/egojump.svg" alt="egojump">
