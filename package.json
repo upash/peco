@@ -32,9 +32,9 @@
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
     "fast-async": "^7.0.4",
+    "fast-glob": "^2.2.1",
     "file-loader": "^1.1.11",
     "fs-extra": "^5.0.0",
-    "globby": "^8.0.1",
     "html-webpack-plugin": "^3.2.0",
     "joycon": "^1.0.2",
     "js-yaml": "^3.11.0",
@@ -79,7 +79,10 @@
     "stylus-loader": "^3.0.2"
   },
   "eslintConfig": {
-    "extends": ["xo", "rem"],
+    "extends": [
+      "xo",
+      "rem"
+    ],
     "env": {
       "jest": true
     }
