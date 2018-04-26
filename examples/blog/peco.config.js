@@ -22,6 +22,8 @@ module.exports = {
     description: 'Humbly powered by Peco!!!',
   },
 
+  languages: ['en', 'zh-cn'],
+
   // Configurations that vary for themes
   themeConfig: {},
 

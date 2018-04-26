@@ -1,6 +1,5 @@
 const path = require('path')
 const chokidar = require('chokidar')
-const getPermalink = require('../lib/utils/get-permalink')
 
 module.exports = api => {
   api.hooks.add('onInitFiles', async () => {
@@ -15,14 +14,14 @@ module.exports = api => {
     }
 
     const addRoute = async filepath => {
-      api.routes.set(getPermalink(filepath), {
+      api.routes.set(api.getPermalink(filepath), {
         path: `@base/pages/${filepath}`,
         type: 'component'
       })
     }
 
     const deleteRoute = async filepath => {
-      const route = getPermalink(filepath)
+      const route = api.getPermalink(filepath)
       api.route.delete(route)
       await api.hooks.runParallel('onRoutesUpdate')
     }

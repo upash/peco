@@ -2,21 +2,59 @@ const path = require('path')
 const fs = require('fs-extra')
 const getPageLink = require('../lib/utils/get-page-link')
 
+const hasMatchedLang = (langs, slug) => {
+  return langs.some(lang => {
+    const RE = new RegExp(`^${lang}[/$]`)
+    return RE.test(slug)
+  })
+}
+
+const isSlugMatchLang = (slug, lang) => {
+  const RE = new RegExp(`^${lang}[/$]`)
+  return RE.test(slug)
+}
+
+const addIndexSuffix = route => {
+  return route.endsWith('/') ? `${route}index` : route
+}
+
 module.exports = api => {
-  api.hooks.add('buildFiles', async posts => {
+  api.hooks.add('buildFiles', async _posts => {
     // Write index layout files
     await Promise.all(
       Array.from(api.files.entries()).map(async entry => {
+        // Make a copy of these posts to manipulate in parellel
+        let posts = [..._posts]
+
         const [filepath, file] = entry
         const { data } = file
 
-        const prefix = filepath.replace(/\.md$/, '')
+        const prefix = filepath.replace(/\.md$/, '').replace(/(^|\/)index$/, '')
 
         if (data.attributes.type === 'index') {
+          if (api.config.languages) {
+            // get language of current page
+            // default language is null
+            let language = null
+            for (const lang of api.config.languages) {
+              if (isSlugMatchLang(data.slug, lang)) {
+                language = lang
+                break
+              }
+            }
+
+            posts = posts.filter(post => {
+              if (language === null) {
+                return !hasMatchedLang(api.config.languages, post.slug)
+              }
+              return isSlugMatchLang(post.slug, language)
+            })
+          }
+
           if (posts.length === 0) {
             const outFile = api.resolvePecoDir(
               'data',
-              `${data.permalink === '/' ? '/index' : data.permalink}.json`
+              `${addIndexSuffix(data.permalink)}.json`
             )
             api.addRouteFromPath(outFile, data.permalink)
             await fs.ensureDir(path.dirname(outFile))
@@ -38,7 +76,7 @@ module.exports = api => {
 
               const outFile = api.resolvePecoDir(
                 'data',
-                `${route === '/' ? '/index' : route}.json`
+                `${addIndexSuffix(route)}.json`
               )
               api.addRouteFromPath(
                 outFile.replace(api.resolvePecoDir(), 'dot-peco'),

@@ -1,0 +1,4 @@
+---
+layout: index
+type: index
+---
