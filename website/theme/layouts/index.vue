@@ -14,7 +14,7 @@
 
 <script>
 import Features from '@theme/components/Features.vue'
-import { title, description } from '@site-meta'
+import { meta } from '@site-data'
 
 export default {
   props: ['page'],
@@ -24,19 +24,18 @@ export default {
   },
 
   head: {
-    title,
+    title: meta.title,
     meta: [
       {
         name: 'description',
-        content: description
+        content: meta.description
       }
     ]
   },
 
   data() {
     return {
-      title,
-      description
+      ...meta
     }
   }
 }

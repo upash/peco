@@ -22,19 +22,19 @@
 </template>
 
 <script>
-import { title, description } from '@site-meta'
+import { meta } from '@site-data'
 
 export default {
   head() {
     return {
       title:
         !this.page.pagination || this.page.pagination.current === 1
-          ? title
-          : `${title} - page ${this.page.pagination.current}`,
+          ? meta.title
+          : `${meta.title} - page ${this.page.pagination.current}`,
       meta: [
         {
           name: 'description',
-          content: description
+          content: meta.description
         }
       ]
     }
@@ -42,8 +42,7 @@ export default {
 
   data() {
     return {
-      title,
-      description
+      ...meta
     }
   },
 
