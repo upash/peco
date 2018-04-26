@@ -5,7 +5,9 @@ const routes = [
     component: 'components/posts.vue',
     path: '/posts',
     props: async () => {
-      const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+        timeout: 3000
+      })
       return {
         posts: data
       }
