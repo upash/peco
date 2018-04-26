@@ -1,6 +1,6 @@
 const path = require('path')
 const chokidar = require('chokidar')
-const getPermalink = require('../utils/get-permalink')
+const getPermalink = require('../lib/utils/get-permalink')
 
 module.exports = api => {
   api.hooks.add('onInitFiles', async () => {

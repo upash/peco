@@ -28,6 +28,6 @@ module.exports = {
   permalink: ':year/:month/:day/:slug.html',
 
   plugins: [
-    ['../../lib/plugins/routes', routes]
+    ['../../plugins/routes', routes]
   ]
 }

@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs-extra')
-const getPageLink = require('../utils/get-page-link')
+const getPageLink = require('../lib/utils/get-page-link')
 
 module.exports = api => {
   api.hooks.add('buildFiles', async posts => {
