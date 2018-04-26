@@ -1,7 +1,7 @@
 ---
 title: Homepage
 pagination:
-  per_page: 3
+  perPage: 3
 ---
 
 __and markdown__
