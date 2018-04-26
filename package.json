@@ -94,7 +94,7 @@
     }
   },
   "lint-staged": {
-    "lib/**/*.js": [
+    "{lib,plugins,bin}/**/*.js": [
       "eslint --fix",
       "git add"
     ]
