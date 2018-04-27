@@ -54,7 +54,7 @@ module.exports = api => {
           if (posts.length === 0) {
             const outFile = api.resolvePecoDir(
               'data',
-              `${addIndexSuffix(data.permalink)}.json`
+              `${addIndexSuffix(data.permalink)}.peson`
             )
             api.addRouteFromPath(outFile, data.permalink)
             await fs.ensureDir(path.dirname(outFile))
@@ -76,7 +76,7 @@ module.exports = api => {
 
               const outFile = api.resolvePecoDir(
                 'data',
-                `${addIndexSuffix(route)}.json`
+                `${addIndexSuffix(route)}.peson`
               )
               api.addRouteFromPath(
                 outFile.replace(api.resolvePecoDir(), 'dot-peco'),
