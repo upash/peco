@@ -16,17 +16,8 @@ const routes = [
 ]
 
 module.exports = {
-  // Meta data that may be used by themes
-  meta: {
-    title: 'Peco',
-    description: 'Humbly powered by Peco!!!',
-  },
-
-  languages: ['en', 'zh-cn'],
-
-  // Configurations that vary for themes
-  themeConfig: {},
-
+  title: 'Peco',
+  description: 'Humbly powered by Peco!!!',
   permalink: ':year/:month/:day/:slug.html',
 
   plugins: [
