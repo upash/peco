@@ -1,6 +1,7 @@
 /* eslint-disable */
 // Google analytics integration
-export default ({ router }) => {
+export default function (ctx) {
+  var router = ctx.router
   if (process.browser && process.env.NODE_ENV === 'production' && __GA_ID__) {
     (function (i, s, o, g, r, a, m) {
       i.GoogleAnalyticsObject = r
