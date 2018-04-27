@@ -63,7 +63,8 @@ module.exports = api => {
           }
 
           const pagination = Object.assign(
-            { perPage: 30 },
+            {},
+            api.config.pagination,
             data.attributes.pagination
           )
 

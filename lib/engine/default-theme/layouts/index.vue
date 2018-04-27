@@ -3,9 +3,6 @@
     <div class="container">
       <h1 class="title">{{ $siteData.title }}</h1>
       <h2 class="description">{{ $siteData.description }}</h2>
-      <div>
-        <router-link to="/zh-cn">中文</router-link>
-      </div>
       <div class="post-list">
         <div class="post" v-for="post in page.posts" :key="post.slug">
           <router-link class="post-title" :to="post.permalink">{{ post.attributes.title || post.slug }}</router-link>
