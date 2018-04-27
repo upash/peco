@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html {{{ renderHtmlAttrs() }}}>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,7 +8,7 @@
     {{{ renderResourceHints() }}}
     {{{ renderStyles() }}}
   </head>
-  <body>
+  <body {{{ renderBodyAttrs() }}}>
     <!--vue-ssr-outlet-->
     {{{ renderState() }}}
     {{{ renderScripts() }}}

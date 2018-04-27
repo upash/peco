@@ -1,8 +1,11 @@
 <template>
   <div class="main">
     <div class="container">
-      <h1 class="title">{{ title }}</h1>
-      <h2 class="description">{{ description }}</h2>
+      <h1 class="title">{{ $siteData.title }}</h1>
+      <h2 class="description">{{ $siteData.description }}</h2>
+      <div>
+        <router-link to="/zh-cn">中文</router-link>
+      </div>
       <div class="post-list">
         <div class="post" v-for="post in page.posts" :key="post.slug">
           <router-link class="post-title" :to="post.permalink">{{ post.attributes.title || post.slug }}</router-link>
@@ -22,28 +25,19 @@
 </template>
 
 <script>
-import { title, description } from '@site-meta'
-
 export default {
   head() {
     return {
       title:
         !this.page.pagination || this.page.pagination.current === 1
-          ? title
-          : `${title} - page ${this.page.pagination.current}`,
+          ? this.$siteData.title
+          : `${this.$siteData.title} - page ${this.page.pagination.current}`,
       meta: [
         {
           name: 'description',
-          content: description
+          content: this.$siteData.description
         }
       ]
-    }
-  },
-
-  data() {
-    return {
-      title,
-      description
     }
   },
 

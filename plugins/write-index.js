@@ -32,22 +32,22 @@ module.exports = api => {
         const prefix = filepath.replace(/\.md$/, '').replace(/(^|\/)index$/, '')
 
         if (data.attributes.type === 'index') {
-          if (api.config.languages) {
-            // get language of current page
-            // default language is null
-            let language = null
-            for (const lang of api.config.languages) {
-              if (isSlugMatchLang(data.slug, lang)) {
-                language = lang
+          if (api.config.localeNames) {
+            // get locale of current page
+            // default locale is null
+            let locale = null
+            for (const name of api.config.localeNames) {
+              if (isSlugMatchLang(data.slug, name)) {
+                locale = name
                 break
               }
             }
 
             posts = posts.filter(post => {
-              if (language === null) {
-                return !hasMatchedLang(api.config.languages, post.slug)
+              if (locale === null || locale === api.config.defaultLocale) {
+                return !hasMatchedLang(api.config.localeNames, post.slug)
               }
-              return isSlugMatchLang(post.slug, language)
+              return isSlugMatchLang(post.slug, locale)
             })
           }
 
