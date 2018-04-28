@@ -14,9 +14,9 @@
     "plugins"
   ],
   "scripts": {
-    "test": "echo 'no tests!'",
+    "test": "yarn lint",
     "example": "node bin/cli.js dev examples/blog",
-    "lint": "eslint lib",
+    "lint": "eslint plugins bin lib",
     "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove Peco? You can now donate to support the author:\\u001b[22m\\u001b[39m\\n> \\u001b[36mhttps://patreon.com/egoist\\u001b[39m')\""
   },
   "author": "egoist <0x142857@gmail.com>",
