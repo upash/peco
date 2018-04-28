@@ -121,16 +121,16 @@ module.exports = class SourceFileSystem {
   }
 
   async buildFiles({ filepath } = {}) {
-    const files = filepath ?
-      [[filepath, this.files.get(filepath)]] :
-      Array.from(this.files.entries())
+    const files = filepath
+      ? [[filepath, this.files.get(filepath)]]
+      : Array.from(this.files.entries())
 
     await Promise.all(
       files.map(async ([filepath, file]) => {
         // eslint-disable-next-line no-multi-assign
-        const data = file.isVirtual ?
-          file.data :
-          await this.getFileData(filepath, file.stats)
+        const data = file.isVirtual
+          ? file.data
+          : await this.getFileData(filepath, file.stats)
 
         this.files.get(filepath).data = data
 
@@ -145,9 +145,9 @@ module.exports = class SourceFileSystem {
       .filter(file => file.data.attributes.layout === 'post')
       .map(v => v.data)
       .sort((a, b) => {
-        return new Date(a.attributes.date) > new Date(b.attributes.date) ?
-          -1 :
-          1
+        return new Date(a.attributes.date) > new Date(b.attributes.date)
+          ? -1
+          : 1
       })
   }
 

@@ -1,4 +1,3 @@
-
 const parser = require('js-yaml')
 
 const optionalByteOrderMark = '\\ufeff?'

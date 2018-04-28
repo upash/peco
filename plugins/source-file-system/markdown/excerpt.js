@@ -8,9 +8,7 @@ module.exports = (md, { paragraphOnly = true } = {}) => {
     if (env) {
       if (typeof env.manualExcerpt === 'undefined') {
         env.manualExcerpt = tokens.some(token => {
-          return (
-            token.type === 'html_block' && hasExcerptMark(token.content)
-          )
+          return token.type === 'html_block' && hasExcerptMark(token.content)
         })
       }
 
@@ -26,7 +24,11 @@ module.exports = (md, { paragraphOnly = true } = {}) => {
             }
           }
         }
-        env.excerpt = self.render(tokens.slice(startIndex, idx + 1), options, env)
+        env.excerpt = self.render(
+          tokens.slice(startIndex, idx + 1),
+          options,
+          env
+        )
       }
     }
 
