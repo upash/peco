@@ -19,12 +19,12 @@ const addIndexSuffix = route => {
 }
 
 module.exports = (api, plugin) => {
-  api.hooks.add('onBuildFiles', async _posts => {
+  api.hooks.add('onBuildIndex', async () => {
     // Write index layout files
     await Promise.all(
       Array.from(plugin.files.entries()).map(async entry => {
         // Make a copy of these posts to manipulate in parellel
-        let posts = [..._posts]
+        let posts = plugin.getPosts()
 
         const [filepath, file] = entry
         const { data } = file
@@ -52,8 +52,6 @@ module.exports = (api, plugin) => {
           }
 
           if (posts.length === 0) {
-            plugin.addRouteFromPath(filepath, data.permalink)
-            await fs.writeFile(filepath, JSON.stringify(data), 'utf8')
             return
           }
 

@@ -22,6 +22,20 @@ module.exports = class SourceFileSystem {
         stats: true
       })
       const files = new Map([
+        [
+          'index.md',
+          {
+            isVirtual: true,
+            data: {
+              attributes: {
+                type: 'index',
+                layout: 'index'
+              },
+              permalink: '/',
+              slug: ''
+            }
+          }
+        ],
         ...fileStats.map(stats => {
           return [stats.path, { stats }]
         })
@@ -67,6 +81,7 @@ module.exports = class SourceFileSystem {
   }
 
   removeRouteByPath(filepath) {
+    filepath = `dot-peco/data/${filepath}.peson`
     for (const [_, item] of this.api.routes.entries()) {
       if (item.path === filepath) {
         this.api.routes.delete(_)
@@ -139,8 +154,9 @@ module.exports = class SourceFileSystem {
         await fs.writeFile(outFile, JSON.stringify(data), 'utf8')
       })
     )
+  }
 
-    // Return sorted posts
+  getPosts() {
     return [...this.files.values()]
       .filter(file => file.data.attributes.layout === 'post')
       .map(v => v.data)
@@ -261,19 +277,22 @@ module.exports = class SourceFileSystem {
   async onInitFiles(files) {
     this.files = files
 
-    const posts = await this.buildFiles()
+    await this.buildFiles()
     for (const filepath of files.keys()) {
       this.addRouteFromPath(filepath)
     }
 
-    await this.api.hooks.runParallel('onBuildFiles', posts)
+    await this.api.hooks.runParallel('onBuildIndex')
     await this.api.hooks.runParallel('onRoutesUpdate')
   }
 
+  // Currently does not rebuild index/category/tag pages
   async onAddFile(filepath) {
+    const stats = await fs.stat(this.api.resolveSourceDir(filepath))
+    this.files.set(filepath, { stats })
     const posts = await this.buildFiles({ filepath })
     this.addRouteFromPath(filepath)
-    await this.api.hooks.runParallel('onBuildFiles', posts)
+    await this.api.hooks.runParallel('onBuildIndex', posts)
     await this.api.hooks.runParallel('onRoutesUpdate')
   }
 
@@ -287,7 +306,9 @@ module.exports = class SourceFileSystem {
   // e.g. the router and relevant category/tag/index page
   async onDeleteFile(filepath) {
     this.removeRouteByPath(filepath)
-    await this.buildFiles()
+    this.files.delete(filepath)
+
+    await this.api.hooks.runParallel('onBuildIndex')
     await this.api.hooks.runParallel('onRoutesUpdate')
   }
 }
