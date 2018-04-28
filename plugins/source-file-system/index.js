@@ -21,6 +21,7 @@ module.exports = class SourceFileSystem {
 
     require('./write-index')(api, this)
     require('./write-categories')(api, this)
+    require('./write-tags')(api, this)
 
     api.hooks.add('onPrepare', async () => {
       const globs = ['**/*.md', '!**/_!(posts)/*.md']

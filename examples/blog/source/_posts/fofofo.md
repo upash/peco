@@ -2,6 +2,8 @@
 title: FOFOFO
 categories:
   - foo
+tags:
+  - hehe
 ---
 
 Esse incididunt enim id laborum ex nulla sit velit aliquip anim. Irure elit proident reprehenderit amet incididunt nostrud. Laboris sunt consectetur eu et dolore adipisicing in dolor minim cillum. Nulla duis reprehenderit id excepteur cillum sunt et laboris. Nisi culpa enim id sint esse ipsum irure.
