@@ -3,11 +3,14 @@ const glob = require('fast-glob')
 const fs = require('fs-extra')
 const chokidar = require('chokidar')
 const frontMatter = require('./front-matter')
+const localRequire = require('../../lib/utils/local-require')
 
 module.exports = class SourceFileSystem {
   apply(api) {
     this.api = api
 
+    // Markdown should be optional in the future
+    // We should be able to use current parser like asciidoc
     this.setMarkdown()
 
     require('./write-index')(api, this)
@@ -61,6 +64,15 @@ module.exports = class SourceFileSystem {
       path: `dot-peco/data/${filepath}.peson`,
       type: 'peson'
     })
+  }
+
+  removeRouteByPath(filepath) {
+    for (const [_, item] of this.api.routes.entries()) {
+      if (item.path === filepath) {
+        this.api.routes.delete(_)
+        break
+      }
+    }
   }
 
   setMarkdown() {
@@ -269,5 +281,13 @@ module.exports = class SourceFileSystem {
     await this.buildFiles({ filepath })
   }
 
-  onDeleteFile() {}
+  // Current implement is stupid
+  // It rebuilds everything
+  // We should only rebuild files that are related to the deleted file
+  // e.g. the router and relevant category/tag/index page
+  async onDeleteFile(filepath) {
+    this.removeRouteByPath(filepath)
+    await this.buildFiles()
+    await this.api.hooks.runParallel('onRoutesUpdate')
+  }
 }
