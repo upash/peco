@@ -2,6 +2,10 @@ module.exports = ({ attribute, nameMapping, type, layout, injectName }) => (
   api,
   plugin
 ) => {
+  // Allow to disable this
+  if (api.config[type] === false) {
+    return
+  }
   api.hooks.add('onBuildIndex', async () => {
     // Group posts by categories
     const allPosts = new Map()
