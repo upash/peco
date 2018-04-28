@@ -4,6 +4,12 @@ const fs = require('fs-extra')
 const chokidar = require('chokidar')
 const frontMatter = require('./front-matter')
 const localRequire = require('../../lib/utils/local-require')
+const {
+  hasMatchedLocale,
+  matchLocale,
+  addIndexSuffix,
+  getPageLink
+} = require('./utils')
 
 module.exports = class SourceFileSystem {
   apply(api) {
@@ -253,7 +259,7 @@ module.exports = class SourceFileSystem {
         }
       }
 
-      const link =
+      let link =
         langPrefix +
         this.api.config.permalink
           .replace(/:year/, year)
@@ -269,8 +275,11 @@ module.exports = class SourceFileSystem {
     }
 
     const removeIndexSuffix = route => {
+      if (route === '/index') {
+        return '/'
+      }
       if (route.endsWith('/index')) {
-        return route.replace(/\/index$/, '/')
+        return route.replace(/\/index$/, '')
       }
       return route
     }
@@ -314,5 +323,82 @@ module.exports = class SourceFileSystem {
 
     await this.api.hooks.runParallel('onBuildIndex')
     await this.api.hooks.runParallel('onRoutesUpdate')
+  }
+
+  getPostsByLocale(posts, locale) {
+    return posts.filter(post => {
+      if (locale === null || locale === this.api.config.defaultLocale) {
+        return !hasMatchedLocale(this.api.config.localeNames, post.permalink)
+      }
+      return matchLocale(locale, post.permalink)
+    })
+  }
+
+  async generatePagination(filepath, file, posts) {
+    const { data } = file
+
+    const pathname = filepath.replace(/\.md$/, '').replace(/(^|\/)index$/, '')
+
+    if (this.api.config.localeNames) {
+      // get locale of current page
+      // default locale is null
+      let locale = null
+      for (const name of this.api.config.localeNames) {
+        if (matchLocale(name, data.permalink)) {
+          locale = name
+          break
+        }
+      }
+
+      posts = this.getPostsByLocale(posts, locale)
+    }
+
+    if (posts.length === 0) {
+      return
+    }
+
+    const pagination = Object.assign(
+      {},
+      this.api.config.pagination,
+      data.attributes.pagination
+    )
+
+    const totalPages = Math.ceil(posts.length / pagination.perPage)
+
+    await Promise.all(
+      new Array(totalPages).fill(null).map(async (_, index) => {
+        const page = index + 1
+        const route = getPageLink(pathname, page)
+
+        const outFile = this.api.resolvePecoDir(
+          'data',
+          `${addIndexSuffix(route)}.peson`
+        )
+        this.addRouteFromPath(
+          outFile.replace(this.api.resolvePecoDir(), 'dot-peco'),
+          route
+        )
+
+        const start = index * pagination.perPage
+        await fs.ensureDir(path.dirname(outFile))
+        await fs.writeFile(
+          outFile,
+          JSON.stringify(
+            Object.assign({}, data, {
+              pagination: {
+                current: page,
+                total: totalPages,
+                hasPrev: page < totalPages,
+                hasNext: page > 1,
+                nextLink: getPageLink(pathname, page - 1),
+                prevLink: getPageLink(pathname, page + 1)
+              },
+              posts: posts.slice(start, start + pagination.perPage)
+            })
+          ),
+          'utf8'
+        )
+      })
+    )
   }
 }
