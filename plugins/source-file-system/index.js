@@ -38,7 +38,7 @@ module.exports = class SourceFileSystem {
                 layout: 'index'
               },
               permalink: '/',
-              slug: ''
+              slug: 'index'
             }
           }
         ],
@@ -213,13 +213,15 @@ module.exports = class SourceFileSystem {
     // Default to the creation time of the file
     attributes.date = attributes.date || stats.birthtime
 
-    const permalink = this.getPermalink(filepath, {
+    const slug = filepath.replace(/^_posts\//, '').replace(/\.md$/, '')
+
+    const permalink = this.getPermalink(slug, {
       type: attributes.type,
       date: attributes.date
     })
 
     const data = {
-      slug: permalink.slice(1),
+      slug,
       permalink,
       attributes,
       body: this.markdown.render(body, env),
@@ -228,9 +230,8 @@ module.exports = class SourceFileSystem {
     return data
   }
 
-  getPermalink(filepath, { date, type } = {}) {
-    // slugified filename
-    let slug = encodeURI(filepath.replace(/^_posts\//, '').replace(/\.md$/, ''))
+  getPermalink(slug, { date, type } = {}) {
+    slug = encodeURI(slug)
 
     if (type === 'post') {
       const d = new Date(date)
