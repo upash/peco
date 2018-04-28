@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs-extra')
-const getPageLink = require('../lib/utils/get-page-link')
+const getPageLink = require('./get-page-link')
 
 const hasMatchedLang = (langs, slug) => {
   return langs.some(lang => {
@@ -18,11 +18,11 @@ const addIndexSuffix = route => {
   return route.endsWith('/') ? `${route}index` : route
 }
 
-module.exports = api => {
-  api.hooks.add('buildFiles', async _posts => {
+module.exports = (api, plugin) => {
+  api.hooks.add('onBuildFiles', async _posts => {
     // Write index layout files
     await Promise.all(
-      Array.from(api.files.entries()).map(async entry => {
+      Array.from(plugin.files.entries()).map(async entry => {
         // Make a copy of these posts to manipulate in parellel
         let posts = [..._posts]
 
@@ -52,13 +52,8 @@ module.exports = api => {
           }
 
           if (posts.length === 0) {
-            const outFile = api.resolvePecoDir(
-              'data',
-              `${addIndexSuffix(data.permalink)}.peson`
-            )
-            api.addRouteFromPath(outFile, data.permalink)
-            await fs.ensureDir(path.dirname(outFile))
-            await fs.writeFile(outFile, JSON.stringify(data), 'utf8')
+            plugin.addRouteFromPath(filepath, data.permalink)
+            await fs.writeFile(filepath, JSON.stringify(data), 'utf8')
             return
           }
 
@@ -79,7 +74,7 @@ module.exports = api => {
                 'data',
                 `${addIndexSuffix(route)}.peson`
               )
-              api.addRouteFromPath(
+              plugin.addRouteFromPath(
                 outFile.replace(api.resolvePecoDir(), 'dot-peco'),
                 route
               )
