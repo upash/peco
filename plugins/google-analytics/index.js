@@ -1,15 +1,19 @@
 const path = require('path')
 
-module.exports = (api, options) => {
-  const ga = typeof options === 'string' ? { id: options } : options || {}
+module.exports = class GoogleAnalyticsPlugin {
+  constructor(options) {
+    this.ga = typeof options === 'string' ? { id: options } : options || {}
+  }
 
-  api.chainWebpack(config => {
-    config.plugin('constants').tap(([options]) => [
-      Object.assign(options, {
-        __GA_ID__: ga.id ? JSON.stringify(ga.id) : false
-      })
-    ])
-  })
+  apply(api) {
+    api.chainWebpack(config => {
+      config.plugin('constants').tap(([options]) => [
+        Object.assign(options, {
+          __GA_ID__: this.ga.id ? JSON.stringify(this.ga.id) : false
+        })
+      ])
+    })
 
-  api.enhanceAppFiles.add(path.join(__dirname, 'google-analytics-inject.js'))
+    api.enhanceAppFiles.add(path.join(__dirname, 'google-analytics-inject.js'))
+  }
 }
