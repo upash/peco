@@ -1,10 +1,24 @@
 ---
 title: Another Post
+compile: true
 categories:
   - foo
+data:
+  count: 0
 ---
 
-__Commodo__ aliquip ea incididunt minim anim eiusmod anim ipsum deserunt laboris. Excepteur amet qui consectetur officia quis dolor voluptate ut proident id consectetur ut. Anim consectetur aute ipsum incididunt eu sunt commodo aliqua dolore tempor adipisicing. Commodo eu consectetur ullamco in duis.
+<button v-on:click="count++">{{ count + 1 }}</button>
+
+<router-link to="/">Home</router-link>
+
+<style scoped>
+button {
+  color: green;
+  font-size: 4rem;
+}
+</style>
+
+__Commodo__ hehe aliquip ea incididunt minim anim eiusmod anim ipsum deserunt laboris. Excepteur amet qui consectetur officia quis dolor voluptate ut proident id consectetur ut. Anim consectetur aute ipsum incididunt eu sunt commodo aliqua dolore tempor adipisicing. Commodo eu consectetur ullamco in duis.
 
 Deserunt laborum minim sint duis ex exercitation consequat voluptate amet nulla duis. Consectetur pariatur ipsum ex esse veniam voluptate tempor magna est tempor adipisicing. Sunt elit irure sit et minim.
 

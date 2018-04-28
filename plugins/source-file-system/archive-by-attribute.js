@@ -39,12 +39,12 @@ module.exports = ({ attribute, nameMapping, type, layout, injectName }) => (
                   type,
                   layout
                 },
-                [injectName]: name
-              },
-              permalink:
-                (locale === defaultLocale ? '' : `/${locale}`) +
-                `/${attribute}/${slug}`,
-              slug
+                [injectName]: name,
+                permalink:
+                  (locale === defaultLocale ? '' : `/${locale}`) +
+                  `/${attribute}/${slug}`,
+                slug
+              }
             }
 
             await plugin.generatePagination(pathname, file, [...posts])

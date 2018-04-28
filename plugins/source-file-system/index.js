@@ -15,10 +15,6 @@ module.exports = class SourceFileSystem {
   apply(api) {
     this.api = api
 
-    // Markdown should be optional in the future
-    // We should be able to use current parser like asciidoc
-    this.setMarkdown()
-
     require('./write-index')(api, this)
     require('./write-categories')(api, this)
     require('./write-tags')(api, this)
@@ -98,20 +94,21 @@ module.exports = class SourceFileSystem {
     }
   }
 
-  setMarkdown() {
+  createMarkdownRenderer() {
     const Markdown = require('markdown-it')
 
-    this.markdown = new Markdown({
+    const renderer = new Markdown({
       html: true,
       linkify: true,
       highlight: require('./markdown/highlight')
     })
-    this.markdown.use(require('./markdown/excerpt'))
+    renderer.use(require('./markdown/excerpt'))
+    renderer.use(require('./markdown/hoist-tags'))
 
     const { markdown } = this.api.config
 
     if (markdown.highlightLines !== false) {
-      this.markdown.use(require('markdown-it-highlight-lines'))
+      renderer.use(require('markdown-it-highlight-lines'))
     }
 
     if (markdown.anchor !== false) {
@@ -121,7 +118,7 @@ module.exports = class SourceFileSystem {
       } else if (typeof markdown.slugify === 'function') {
         slugify = markdown.slugify
       }
-      this.markdown.use(
+      renderer.use(
         require('markdown-it-anchor'),
         Object.assign(
           {
@@ -134,13 +131,15 @@ module.exports = class SourceFileSystem {
 
     if (markdown.plugins) {
       if (typeof markdown.plugins === 'function') {
-        markdown.plugins(this.markdown)
+        markdown.plugins(renderer)
       } else if (Array.isArray(markdown.plugins)) {
         for (const plugin of markdown.plugins) {
-          this.markdown.use(localRequire.require(plugin.name), plugin.options)
+          renderer.use(localRequire.require(plugin.name), plugin.options)
         }
       }
     }
+
+    return renderer
   }
 
   async buildFiles({ filepath } = {}) {
@@ -222,12 +221,15 @@ module.exports = class SourceFileSystem {
       date: attributes.date
     })
 
+    const markdownRenderer = this.createMarkdownRenderer()
+
     const data = {
       slug,
       permalink,
       attributes,
-      body: this.markdown.render(body, env),
-      excerpt: env.excerpt
+      body: markdownRenderer.render(body, env),
+      excerpt: env.excerpt,
+      hoistedTags: env.hoistedTags
     }
     return data
   }

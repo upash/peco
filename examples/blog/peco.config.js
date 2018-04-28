@@ -28,5 +28,5 @@ module.exports = {
     }
   },
 
-  plugins: [['../../plugins/routes', routes]]
+  // plugins: [['../../plugins/routes', routes]]
 }
