@@ -157,14 +157,18 @@ module.exports = class SourceFileSystem {
   }
 
   getPosts() {
-    return [...this.files.values()]
-      .filter(file => file.data.attributes.layout === 'post')
-      .map(v => v.data)
-      .sort((a, b) => {
-        return new Date(a.attributes.date) > new Date(b.attributes.date)
-          ? -1
-          : 1
-      })
+    return (
+      [...this.files.values()]
+        // Filter by type instead of layout
+        // Cause a post's type must be `post` but it can use any `layout` component
+        .filter(file => file.data.attributes.type === 'post')
+        .map(v => v.data)
+        .sort((a, b) => {
+          return new Date(a.attributes.date) > new Date(b.attributes.date)
+            ? -1
+            : 1
+        })
+    )
   }
 
   async getFileData(filepath, stats) {
