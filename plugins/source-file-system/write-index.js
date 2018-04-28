@@ -5,7 +5,10 @@ module.exports = (api, plugin) => {
       Array.from(plugin.files.entries()).map(async entry => {
         const [filepath, file] = entry
         if (file.data.attributes.type === 'index') {
-          await plugin.generatePagination(filepath, file, plugin.getPosts())
+          const pathname = filepath
+            .replace(/\.md$/, '')
+            .replace(/(^|\/)index$/, '')
+          await plugin.generatePagination(pathname, file, plugin.getPosts())
         }
       })
     )

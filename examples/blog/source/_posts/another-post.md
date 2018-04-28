@@ -1,5 +1,7 @@
 ---
 title: Another Post
+categories:
+  - foo
 ---
 
 __Commodo__ aliquip ea incididunt minim anim eiusmod anim ipsum deserunt laboris. Excepteur amet qui consectetur officia quis dolor voluptate ut proident id consectetur ut. Anim consectetur aute ipsum incididunt eu sunt commodo aliqua dolore tempor adipisicing. Commodo eu consectetur ullamco in duis.

@@ -20,6 +20,7 @@ module.exports = class SourceFileSystem {
     this.setMarkdown()
 
     require('./write-index')(api, this)
+    require('./write-categories')(api, this)
 
     api.hooks.add('onPrepare', async () => {
       const globs = ['**/*.md', '!**/_!(posts)/*.md']
@@ -335,10 +336,8 @@ module.exports = class SourceFileSystem {
     })
   }
 
-  async generatePagination(filepath, file, posts) {
+  async generatePagination(pathname, file, posts) {
     const { data } = file
-
-    const pathname = filepath.replace(/\.md$/, '').replace(/(^|\/)index$/, '')
 
     if (this.api.config.localeNames) {
       // get locale of current page
