@@ -22,6 +22,11 @@
 </template>
 
 <script>
+import { queryPageByPath } from 'peco'
+
+const page = queryPageByPath('/2018/04/29/another-post.html')
+console.log(page.attributes)
+
 export default {
   head() {
     return {
