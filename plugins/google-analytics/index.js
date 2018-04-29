@@ -1,4 +1,5 @@
 const path = require('path')
+const slash = require('slash')
 
 module.exports = class GoogleAnalyticsPlugin {
   constructor(options) {
@@ -14,6 +15,8 @@ module.exports = class GoogleAnalyticsPlugin {
       ])
     })
 
-    api.enhanceAppFiles.add(path.join(__dirname, 'google-analytics-inject.js'))
+    api.enhanceAppFiles.add(
+      slash(path.join(__dirname, 'google-analytics-inject.js'))
+    )
   }
 }

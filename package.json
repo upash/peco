@@ -52,6 +52,7 @@
     "promise-polyfill": "^7.1.2",
     "register-service-worker": "^1.2.0",
     "resolve-from": "^4.0.0",
+    "slash": "^2.0.0",
     "time-fix-plugin": "^2.0.1",
     "toml": "^2.3.3",
     "url-loader": "^1.0.1",
