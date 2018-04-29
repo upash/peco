@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`queryPageByPath 1`] = `"const page = require(\\"@noop-query?type=queryPageByPath&value=/foo\\").default;"`;

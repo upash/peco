@@ -2,8 +2,8 @@
   <div>
     <div class="hero">
       <div class="container">
-        <h1 class="title">{{ title }}</h1>
-        <h2 class="description">{{ description }}</h2>
+        <h1 class="title">{{ $siteData.title }}</h1>
+        <h2 class="description">{{ $siteData.description }}</h2>
       </div>
     </div>
     <div class="container">
@@ -14,7 +14,6 @@
 
 <script>
 import Features from '@theme/components/Features.vue'
-import { title, description } from '@site-meta'
 
 export default {
   props: ['page'],
@@ -23,20 +22,15 @@ export default {
     Features
   },
 
-  head: {
-    title,
-    meta: [
-      {
-        name: 'description',
-        content: description
-      }
-    ]
-  },
-
-  data() {
+  head() {
     return {
-      title,
-      description
+      title: this.$siteData.title,
+      meta: [
+        {
+          name: 'description',
+          content: this.$siteData.description
+        }
+      ]
     }
   }
 }
