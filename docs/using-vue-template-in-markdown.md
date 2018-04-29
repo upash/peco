@@ -15,4 +15,8 @@ data:
 <button>{{ count }}</button>
 ```
 
-You can also use the `data` from front-matter if you want.
+You can also:
+
+- use the data from front-matter attribute `data` if you want.
+- use `page` to access the `page` prop of this page, like `{{ page.permalink }}.
+

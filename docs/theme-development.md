@@ -30,6 +30,10 @@ interface Page {
   body?: string
   // first paragraph of body
   excerpt?: string
+  // Permanent link
+  permalink: string
+  // Slugified file path
+  slug: string
 }
 ```
 
@@ -54,3 +58,10 @@ interface IndexPage extends Page {
 You can use `ES2015` `Sass` `Stylus` `PostCSS` etc to write your theme.
 
 Note that if you're using config files for these preprocessors, make sure to include them like `postcss.config.js` in your theme directory when publishing on npm.
+
+## Access site data in component
+
+- `this.$siteData`
+  - `title`: The `title` in config file
+  - `description`: The `description` in config file
+- `this.$themeConfig`: `themeConfig` in config file

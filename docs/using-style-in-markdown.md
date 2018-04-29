@@ -18,4 +18,4 @@ button {
 </style>
 ```
 
-This is basically magic, we extract all `<style>` tags in the markdown and let `vue-loader` handle it. So everything that works for `<style` tag in normal `.vue` file works here too.
+This is basically magic, we extract all `<style>` tags in the markdown and let `vue-loader` handle it. So everything that works for `<style>` tag in normal `.vue` file works here too.
