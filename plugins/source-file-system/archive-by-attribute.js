@@ -23,7 +23,7 @@ module.exports = ({ attribute, nameMapping, type, layout, injectName }) => (
 
     if (allPosts.size === 0) return
 
-    const { localeNames, defaultLocale } = api.config
+    const { localeNames, locale: defaultLocale } = api.config
     const mapping = api.config[nameMapping] || {}
 
     await Promise.all(

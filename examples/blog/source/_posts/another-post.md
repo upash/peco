@@ -1,6 +1,6 @@
 ---
 title: Another Post
-compile: true
+compileTemplate: true
 categories:
   - foo
 data:

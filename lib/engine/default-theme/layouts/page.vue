@@ -2,7 +2,7 @@
   <div class="main">
     <div class="container">
       <h1>{{ page.attributes.title }}</h1>
-      <div class="content" v-if="page.attributes.compile">
+      <div class="content" v-if="page.attributes.compileTemplate">
         <slot name="body"></slot>
       </div>
       <div class="content" v-html="page.body"></div>

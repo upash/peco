@@ -256,7 +256,7 @@ module.exports = class SourceFileSystem {
             slug = slug.replace(RE, '')
             // Do not add lang prefix for default locale
             // eslint-disable-next-line max-depth
-            if (name !== this.api.config.defaultLocale) {
+            if (name !== this.api.config.locale) {
               langPrefix = `${name}/`
             }
             break
@@ -332,7 +332,7 @@ module.exports = class SourceFileSystem {
 
   getPostsByLocale(posts, locale) {
     return posts.filter(post => {
-      if (locale === null || locale === this.api.config.defaultLocale) {
+      if (locale === null || locale === this.api.config.locale) {
         return !hasMatchedLocale(this.api.config.localeNames, post.permalink)
       }
       return matchLocale(locale, post.permalink)

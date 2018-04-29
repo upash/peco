@@ -1,7 +1,11 @@
 /* eslint-disable */
 import event from '@app/event'
 
-if (process.browser && __PWA_ENABLED__) {
+if (
+  process.browser &&
+  process.env.NODE_ENV === 'production' &&
+  __PWA_ENABLED__
+) {
   const { register } = require('register-service-worker')
 
   register(`${__PUBLIC_PATH__}sw.js`, {

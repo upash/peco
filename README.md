@@ -12,22 +12,25 @@ It is good. I don't think I'll ever use Hexo again.
 
 ## Installation
 
-Not yet available on npm, just `yarn add egojump/peco` for now.
+It's recommended to install peco locally in your project:
 
-We will officially release it on __May 1st__.
+```bash
+cd your-project
+yarn add peco
+```
 
 ## How to use?
 
-No docs yet but let me explain how to use it in 20 words:
+Let me explain how to use it in 20 words:
 
 - `source/*.md` is your pages
 - `source/_posts/*.md` is your posts
 - `peco dev [directory]` to run it
 - `peco build [directory]` to build it
 
-There're many more features though 😅
+For details please check out the [docs](./docs).
 
-Documentations will be available when it's officially released...
+Documentation website is work-in-progress.
 
 ## Contribute?
 
