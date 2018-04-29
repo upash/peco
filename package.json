@@ -50,6 +50,7 @@
     "postcss-loader": "^2.1.4",
     "prismjs": "^1.14.0",
     "promise-polyfill": "^7.1.2",
+    "register-service-worker": "^1.2.0",
     "resolve-from": "^4.0.0",
     "time-fix-plugin": "^2.0.1",
     "toml": "^2.3.3",
@@ -65,7 +66,8 @@
     "webpack-dev-middleware": "^3.1.2",
     "webpack-hot-client": "^2.2.2",
     "webpack-node-externals": "^1.7.2",
-    "webpackbar": "^2.6.1"
+    "webpackbar": "^2.6.1",
+    "workbox-build": "^3.1.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.2",
