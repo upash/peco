@@ -40,7 +40,7 @@ For example, you have to set it to `/blog/` if your website is located at: `http
 - __Type__: `string`
 - __Default__: `source`
 
-The directory to your source files, relative to `root` directory.
+The directory to your source files, relative to base directory.
 
 ### permalink
 
