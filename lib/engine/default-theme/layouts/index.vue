@@ -24,8 +24,8 @@
 <script>
 import { queryPageByPath } from 'peco'
 
-const page = queryPageByPath('/2018/04/29/another-post.html')
-console.log(page.attributes)
+const data = queryPageByPath('/2018/04/29/another-post.html', 'attributes.categories[0]')
+console.log(data)
 
 export default {
   head() {
