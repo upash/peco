@@ -42,6 +42,22 @@ For example, you have to set it to `/blog/` if your website is located at: `http
 
 The directory to your source files, relative to `root` directory.
 
+### permalink
+
+- __Type__: `string`
+- __Default__: `:year/:month/:day/:slug`
+
+The permanent link of posts.
+
+|name|description|
+|---|---|
+|:year|Published year of posts (4-digit)|
+|:month|Published month of posts (2-digit)|
+|:i_month|Published month of posts (Without leading zeros)|
+|:day|Published day of posts (2-digit)|
+|:i_day|Published day of posts (Without leading zeros)|
+|:slug|Slugified file path (Without extension)|
+
 ### pwa
 
 - __Type__: `boolean`
