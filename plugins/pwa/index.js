@@ -1,5 +1,4 @@
 const path = require('path')
-const slash = require('slash')
 
 module.exports = class OfflinePlugin {
   constructor(pwaEnabled) {
@@ -15,7 +14,7 @@ module.exports = class OfflinePlugin {
       ])
     })
 
-    api.enhanceAppFiles.add(slash(path.join(__dirname, 'pwa-inject.js')))
+    api.enhanceAppFiles.add(path.join(__dirname, 'pwa-inject.js'))
 
     api.configureDevServer(app => {
       app.use(require('./noop-sw-middleware')())
