@@ -1,7 +1,7 @@
 {
   "name": "peco",
   "version": "0.0.0",
-  "description": "Documentation website done right.",
+  "description": "Static website generator for humans",
   "repository": {
     "url": "egoist/peco",
     "type": "git"
@@ -107,5 +107,17 @@
       "eslint --fix",
       "git add"
     ]
-  }
+  },
+  "keywords": [
+    "static",
+    "website",
+    "static-site",
+    "vue",
+    "website",
+    "ssr",
+    "ssg",
+    "react-static",
+    "gatsby",
+    "hexo"
+  ]
 }

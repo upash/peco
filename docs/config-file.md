@@ -101,3 +101,39 @@ You can access this category page via `/categories/apple-pencil` then.
 ### tagMap
 
 Same as `categoryMap` for but tags.
+
+### markdown
+
+#### slugify
+
+Use a custom npm package for slugify headers, e.g. use [limax](https://github.com/lovell/limax) for CJK support:
+
+📝 __peco.config.yml__:
+
+```yaml
+markdown:
+  slugify: limax
+```
+
+You can also directory require a package when using JS config file:
+
+📝 __peco.config.js__:
+
+```js
+module.exports = {
+  markdown: {
+    slugify: require('limax')
+  }
+}
+```
+
+#### plugins
+
+- __Type__: An array of `{name: string, options: any}`
+
+```yaml
+markdown:
+  plugins:
+    - name: markdown-it-footnote
+      options: # optional options
+```
