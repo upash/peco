@@ -4,12 +4,14 @@ module.exports = (api, plugin) => {
     await Promise.all(
       Array.from(plugin.files.entries()).map(async entry => {
         const [filepath, file] = entry
-        if (file.data.attributes.type === 'index') {
-          const pathname = filepath
-            .replace(/\.md$/, '')
-            .replace(/(^|\/)index$/, '')
-          await plugin.generatePagination(pathname, file, plugin.getPosts())
-        }
+        const { type, pagination } = file.data.attributes
+        if (type !== 'index' || pagination === false) return
+        if (pagination === undefined && api.config.pagination === false) return
+
+        const pathname = filepath
+          .replace(/\.md$/, '')
+          .replace(/(^|\/)index$/, '')
+        await plugin.generatePagination(pathname, file, plugin.getPosts())
       })
     )
   })
