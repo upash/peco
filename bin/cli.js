@@ -15,11 +15,16 @@ const cac = require('cac').default
 
 const cli = cac()
 
-cli.command('dev', 'Develop website locally', (input, flags) => {
-  const app = require('../lib')(Object.assign({ baseDir: input[0] }, flags))
+cli
+  .command('dev', 'Develop website locally', (input, flags) => {
+    const app = require('../lib')(Object.assign({ baseDir: input[0] }, flags))
 
-  return app.dev()
-})
+    return app.dev()
+  })
+  .option('port', {
+    desc: 'Port for dev server',
+    type: 'number'
+  })
 
 cli.command('build', 'Build website to static HTML files', (input, flags) => {
   const app = require('../lib')(Object.assign({ baseDir: input[0] }, flags))
