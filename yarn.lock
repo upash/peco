@@ -6965,6 +6965,12 @@ use@^3.1.0:
   dependencies:
     kind-of "^6.0.2"
 
+user-home@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/user-home/-/user-home-2.0.0.tgz#9c70bfd8169bc1dcbf48604e0f04b8b49cde9e9f"
+  dependencies:
+    os-homedir "^1.0.0"
+
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -7472,3 +7478,9 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+yarn-global@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/yarn-global/-/yarn-global-1.1.0.tgz#ab2a050c51347fc83988b335557709b9f1fdfc08"
+  dependencies:
+    user-home "^2.0.0"

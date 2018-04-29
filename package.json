@@ -67,7 +67,8 @@
     "webpack-hot-client": "^2.2.2",
     "webpack-node-externals": "^1.7.2",
     "webpackbar": "^2.6.1",
-    "workbox-build": "^3.1.0"
+    "workbox-build": "^3.1.0",
+    "yarn-global": "^1.1.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.2",
