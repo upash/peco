@@ -28,7 +28,7 @@
     "autoprefixer": "^8.3.0",
     "babel-loader": "^8.0.0-beta.2",
     "cac": "^5.0.10",
-    "chokidar": "^2.0.2",
+    "chokidar": "^2.0.3",
     "connect-history-api-fallback": "^1.5.0",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
