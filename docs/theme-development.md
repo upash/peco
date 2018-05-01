@@ -55,9 +55,9 @@ interface IndexPage extends Page {
 
 ## Preprocessors
 
-You can use `ES2015` `Sass` `Stylus` `PostCSS` etc to write your theme.
+You can use `ES2015` `Sass` `Stylus` etc to write your theme.
 
-Note that if you're using config files for these preprocessors, make sure to include them like `postcss.config.js` in your theme directory when publishing on npm.
+Note that you need to install relevant dependencies for your theme, like `node-sass` and `sass-loader` for `Sass`.
 
 ## Access site data in component
 
