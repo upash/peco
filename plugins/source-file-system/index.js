@@ -117,7 +117,10 @@ module.exports = class SourceFileSystem {
         slugify = localRequire.require(markdown.slugify)
       } else if (typeof markdown.slugify === 'function') {
         slugify = markdown.slugify
+      } else {
+        slugify = require('@sindresorhus/slugify')
       }
+
       renderer.use(
         require('markdown-it-anchor'),
         Object.assign(
