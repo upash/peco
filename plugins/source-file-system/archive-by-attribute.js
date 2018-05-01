@@ -1,3 +1,5 @@
+const fs = require('fs-extra')
+
 module.exports = ({ attribute, nameMapping, type, layout, injectName }) => (
   api,
   plugin
@@ -21,10 +23,10 @@ module.exports = ({ attribute, nameMapping, type, layout, injectName }) => (
       }
     }
 
-    if (allPosts.size === 0) return
-
     const { localeNames, locale: defaultLocale } = api.config
     const mapping = api.config[nameMapping] || {}
+
+    const list = new Map()
 
     await Promise.all(
       [...allPosts.entries()].map(async ([name, posts]) => {
@@ -33,6 +35,14 @@ module.exports = ({ attribute, nameMapping, type, layout, injectName }) => (
           locales.map(async locale => {
             const slug = mapping[name] || name
             const pathname = `${attribute}/${slug}`
+            const permalink =
+              (locale === defaultLocale ? '' : `/${locale}`) +
+              `/${attribute}/${slug}`
+            list.set(`${locale}::${name}`, {
+              permalink,
+              locale,
+              name
+            })
             const file = {
               data: {
                 attributes: {
@@ -40,9 +50,7 @@ module.exports = ({ attribute, nameMapping, type, layout, injectName }) => (
                   layout
                 },
                 [injectName]: name,
-                permalink:
-                  (locale === defaultLocale ? '' : `/${locale}`) +
-                  `/${attribute}/${slug}`,
+                permalink,
                 slug
               }
             }
@@ -51,6 +59,12 @@ module.exports = ({ attribute, nameMapping, type, layout, injectName }) => (
           })
         )
       })
+    )
+
+    await fs.writeFile(
+      api.resolvePecoDir('data', `${attribute}.json`),
+      JSON.stringify([...list.values()]),
+      'utf8'
     )
   })
 }
