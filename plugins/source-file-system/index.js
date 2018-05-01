@@ -187,12 +187,6 @@ module.exports = class SourceFileSystem {
 
     const env = {}
 
-    // Ensure page layout and type
-    const setLayout = layout => {
-      if (typeof attributes.layout !== 'string') {
-        attributes.layout = layout
-      }
-    }
     const setType = type => {
       if (typeof attributes.type !== 'string') {
         attributes.type = type
@@ -200,14 +194,15 @@ module.exports = class SourceFileSystem {
     }
 
     if (filepath === 'index.md') {
-      setLayout('index')
       setType('index')
     } else if (filepath.startsWith('_posts/')) {
-      setLayout('post')
       setType('post')
     } else {
-      setLayout('page')
       setType('page')
+    }
+
+    if (attributes.type && !attributes.layout) {
+      attributes.layout = attributes.type
     }
 
     // Ensure page date
