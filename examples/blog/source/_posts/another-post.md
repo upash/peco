@@ -1,5 +1,6 @@
 ---
 title: Another Post
+date: 2018/04/29
 compileTemplate: true
 categories:
   - foo

@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="container">
-      <h1>{{ page.attributes.title }}</h1>
+      <h1>{{ page.title }}</h1>
       <div class="tags" v-if="page.attributes.tags">
         <div class="tag" v-for="tag in page.attributes.tags" :key="tag">
           <router-link :to="$getTagLink(tag)">#{{ tag }}</router-link>
@@ -22,7 +22,7 @@ export default {
 
   head() {
     return {
-      title: this.page.attributes.title
+      title: this.page.title
     }
   }
 }

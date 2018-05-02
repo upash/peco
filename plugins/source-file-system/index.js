@@ -104,6 +104,7 @@ module.exports = class SourceFileSystem {
     })
     renderer.use(require('./markdown/excerpt'))
     renderer.use(require('./markdown/hoist-tags'))
+    renderer.use(require('./markdown/extract-title'))
 
     const { markdown } = this.api.config
 
@@ -227,7 +228,8 @@ module.exports = class SourceFileSystem {
       attributes,
       body: markdownRenderer.render(body, env),
       excerpt: env.excerpt,
-      hoistedTags: env.hoistedTags
+      hoistedTags: env.hoistedTags,
+      title: attributes.title || env.title
     }
     return data
   }

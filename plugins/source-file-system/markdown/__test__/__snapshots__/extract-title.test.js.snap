@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`main: env 1`] = `
+Object {
+  "title": "hello __world__",
+}
+`;
+
+exports[`main: html 1`] = `
+"
+<h1>hoo</h1>
+<p>wow</p>
+"
+`;
