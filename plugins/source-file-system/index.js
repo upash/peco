@@ -18,6 +18,7 @@ module.exports = class SourceFileSystem {
     require('./write-index')(api, this)
     require('./write-categories')(api, this)
     require('./write-tags')(api, this)
+    require('./write-pages')(api, this)
 
     require('./add-query')(api, this)
 
@@ -170,17 +171,20 @@ module.exports = class SourceFileSystem {
   }
 
   getPosts() {
+    return this.getPages(file => {
+      return file.data.attributes.type === 'post'
+    }).sort((a, b) => {
+      return new Date(a.attributes.date) > new Date(b.attributes.date) ? -1 : 1
+    })
+  }
+
+  getPages(condition) {
     return (
       [...this.files.values()]
         // Filter by type instead of layout
         // Cause a post's type must be `post` but it can use any `layout` component
-        .filter(file => file.data.attributes.type === 'post')
+        .filter(condition)
         .map(v => v.data)
-        .sort((a, b) => {
-          return new Date(a.attributes.date) > new Date(b.attributes.date)
-            ? -1
-            : 1
-        })
     )
   }
 
