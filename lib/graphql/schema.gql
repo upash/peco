@@ -1,0 +1,18 @@
+type Query {
+  page(path: String): Page
+}
+
+type Page {
+  attributes: Attributes
+  body: String
+  permalink: String
+  slug: String
+}
+
+type Attributes {
+  title: String
+  date: String
+  compileTemplate: Boolean
+  categories: [String]
+  tags: [String]
+}

@@ -191,6 +191,9 @@ module.exports = class SourceFileSystem {
 
     const env = {}
 
+    const markdownRenderer = this.createMarkdownRenderer()
+    const html = markdownRenderer.render(body, env)
+
     const setType = type => {
       if (typeof attributes.type !== 'string') {
         attributes.type = type
@@ -213,6 +216,9 @@ module.exports = class SourceFileSystem {
     // Default to the creation time of the file
     attributes.date = attributes.date || stats.birthtime
 
+    // Ensure page title
+    attributes.title = attributes.title || env.title
+
     const slug = filepath.replace(/^_posts\//, '').replace(/\.md$/, '')
 
     const permalink = this.getPermalink(slug, {
@@ -220,16 +226,13 @@ module.exports = class SourceFileSystem {
       date: attributes.date
     })
 
-    const markdownRenderer = this.createMarkdownRenderer()
-
     const data = {
       slug,
       permalink,
       attributes,
-      body: markdownRenderer.render(body, env),
+      body: html,
       excerpt: env.excerpt,
-      hoistedTags: env.hoistedTags,
-      title: attributes.title || env.title
+      hoistedTags: env.hoistedTags
     }
     return data
   }
