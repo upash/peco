@@ -1,22 +1,15 @@
 <template>
-  <div></div>
+  <div>
+    <div class="post" v-for="post of page.posts" :key="post.permalink">
+      <h2>{{ post.attributes.title }}</h2>
+      <div class="excerpt" v-html="post.excerpt"></div>
+    </div>
+  </div>
 </template>
 
 <script>
-const { pageByFile } = graphql`
-  {
-    pageByFile(filepath: "about.md") {
-      permalink
-      attributes {
-        title
-      }
-      body
-    }
-  }
-`
-console.log(pageByFile)
 export default {
-
+  props: ['page']
 }
 </script>
 

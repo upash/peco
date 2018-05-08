@@ -309,24 +309,20 @@ module.exports = class SourceFileSystem {
     await this.api.hooks.runParallel('onRoutesUpdate')
   }
 
-  // Currently does not rebuild index/category/tag pages
   async onAddFile(filepath) {
     const stats = await fs.stat(this.api.resolveSourceDir(filepath))
     this.files.set(filepath, { stats })
-    const posts = await this.buildFiles({ filepath })
+    await this.buildFiles({ filepath })
     this.addRouteFromPath(filepath)
-    await this.api.hooks.runParallel('onBuildIndex', posts)
+    await this.api.hooks.runParallel('onBuildIndex')
     await this.api.hooks.runParallel('onRoutesUpdate')
   }
 
   async onChangeFile(filepath) {
     await this.buildFiles({ filepath })
+    await this.api.hooks.runParallel('onBuildIndex')
   }
 
-  // Current implement is stupid
-  // It rebuilds everything
-  // We should only rebuild files that are related to the deleted file
-  // e.g. the router and relevant category/tag/index page
   async onDeleteFile(filepath) {
     this.removeRouteByPath(filepath)
     this.files.delete(filepath)
