@@ -50,8 +50,11 @@ module.exports = (api, plugin) => {
         type: graphql.GraphQLString
       }
     },
-    async resolve(_, args) {
+    async resolve(_, args, { api, loader }) {
       const file = plugin.files.get(args.filepath)
+      if (loader) {
+        loader.addDependency(api.resolvePecoDir(args.filepath))
+      }
       if (!file) {
         throw new Error(`Cannot find file at ${args.filepath}`)
       }
@@ -66,10 +69,13 @@ module.exports = (api, plugin) => {
         type: graphql.GraphQLString
       }
     },
-    async resolve(_, args) {
-      const file = [...plugin.files.values()].find(
-        file => file.data.permalink === args.url
-      )
+    async resolve(_, args, { api, loader }) {
+      const [filepath, file] = [...plugin.files.entries()].find(([, file]) => {
+        return file.data.permalink === args.url
+      })
+      if (loader) {
+        loader.addDependency(api.resolvePecoDir(filepath))
+      }
       if (!file) {
         throw new Error(`Cannot find file at ${args.url}`)
       }
