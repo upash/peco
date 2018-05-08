@@ -4,9 +4,8 @@ module.exports = (api, plugin) => {
     await Promise.all(
       Array.from(plugin.files.entries()).map(async entry => {
         const [filepath, file] = entry
-        const { type, pagination } = file.data.attributes
-        if (type !== 'index' || pagination === false) return
-        if (pagination === undefined && api.config.pagination === false) return
+        const { type } = file.data.attributes
+        if (type !== 'index') return
 
         const pathname = filepath
           .replace(/\.md$/, '')

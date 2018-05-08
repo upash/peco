@@ -365,13 +365,20 @@ module.exports = class SourceFileSystem {
       return
     }
 
-    const pagination = Object.assign(
-      {},
-      this.api.config.pagination,
-      data.attributes.pagination
-    )
+    const pagination =
+      data.attributes.pagination === undefined
+        ? this.api.config.pagination
+        : data.attributes.pagination
 
-    const totalPages = Math.ceil(posts.length / pagination.perPage)
+    let totalPages
+    let perPage
+    if (pagination === false) {
+      totalPages = 1
+      perPage = posts.length
+    } else {
+      totalPages = Math.ceil(posts.length / pagination.perPage)
+      perPage = pagination.perPage
+    }
 
     await Promise.all(
       new Array(totalPages).fill(null).map(async (_, index) => {
@@ -387,7 +394,7 @@ module.exports = class SourceFileSystem {
           route
         )
 
-        const start = index * pagination.perPage
+        const start = index * perPage
         await fs.ensureDir(path.dirname(outFile))
         await fs.writeFile(
           outFile,
@@ -401,7 +408,7 @@ module.exports = class SourceFileSystem {
                 nextLink: getPageLink(pathname, page - 1),
                 prevLink: getPageLink(pathname, page + 1)
               },
-              posts: posts.slice(start, start + pagination.perPage)
+              posts: posts.slice(start, start + perPage)
             })
           ),
           'utf8'
