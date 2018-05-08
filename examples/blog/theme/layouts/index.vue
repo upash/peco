@@ -3,9 +3,9 @@
 </template>
 
 <script>
-const { page } = graphql`
+const { pageByFile } = graphql`
   {
-    page(path: "/about") {
+    pageByFile(filepath: "about.md") {
       permalink
       attributes {
         title
@@ -14,7 +14,7 @@ const { page } = graphql`
     }
   }
 `
-console.log(page)
+console.log(pageByFile)
 export default {
 
 }

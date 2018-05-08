@@ -19,6 +19,8 @@ module.exports = class SourceFileSystem {
     require('./write-categories')(api, this)
     require('./write-tags')(api, this)
 
+    require('./add-query')(api, this)
+
     api.hooks.add('onPrepare', async () => {
       const globs = ['**/*.md', '!**/_!(posts)/*.md']
       const fileStats = await glob(globs, {
