@@ -34,6 +34,7 @@
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
     "fast-async": "^7.0.4",
     "fast-glob": "^2.2.1",
     "file-loader": "^1.1.11",
