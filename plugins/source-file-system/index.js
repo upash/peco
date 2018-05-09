@@ -8,7 +8,8 @@ const {
   hasMatchedLocale,
   matchLocale,
   addIndexSuffix,
-  getPageLink
+  getPageLink,
+  stripHTML
 } = require('./utils')
 
 module.exports = class SourceFileSystem {
@@ -21,6 +22,7 @@ module.exports = class SourceFileSystem {
     require('./write-pages')(api, this)
 
     require('./add-query')(api, this)
+    require('./generate-feed')(api, this)
 
     api.hooks.add('onPrepare', async () => {
       const globs = ['**/*.md', '!**/_!(posts)/*.md']
@@ -237,7 +239,9 @@ module.exports = class SourceFileSystem {
       permalink,
       attributes,
       body: html,
-      excerpt: env.excerpt,
+      excerpt: attributes.compileTemplate
+        ? stripHTML(env.excerpt)
+        : env.excerpt,
       hoistedTags: env.hoistedTags
     }
     return data

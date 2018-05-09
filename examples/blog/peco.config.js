@@ -19,7 +19,10 @@ module.exports = {
   title: 'Peco',
   description: 'Humbly powered by Peco!!!',
   permalink: ':year/:month/:day/:slug.html',
+  url: 'https://example.com',
   theme: './theme',
+
+  feed: true,
 
   locales: {
     'zh-cn': {

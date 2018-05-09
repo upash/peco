@@ -22,3 +22,8 @@ exports.getPageLink = (prefix, page) => {
   if (res === '/') return res
   return res.replace(/\/$/, '')
 }
+
+exports.stripHTML = html => {
+  html = html || ''
+  return html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '').trim()
+}
