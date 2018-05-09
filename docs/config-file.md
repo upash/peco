@@ -153,3 +153,18 @@ markdown:
     - name: markdown-it-footnote
       options: # optional options
 ```
+
+### feed
+
+- __Type__: `boolean` `object`
+- __Default__: `undefined`
+
+Generate feed, disabled by default. When it's `true`, default options will be used:
+
+```js
+{
+  type: 'atom', // Only option for now
+  path: 'atom.xml',
+  limit: 20
+}
+```
