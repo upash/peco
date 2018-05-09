@@ -65,3 +65,24 @@ Note that you need to install relevant dependencies for your theme, like `node-s
   - `title`: The `title` in config file
   - `description`: The `description` in config file
 - `this.$themeConfig`: `themeConfig` in config file
+
+## App-level enhancements
+
+Peco will read `./path/to/theme/index.js` to apply app-level enhancements:
+
+```js
+import Vue from 'vue'
+
+// Add a global mixin
+Vue.mixin({})
+
+// Optional default export
+export default ({
+  // Vue router instance
+  router,
+  // Options for root Vue instance
+  rootOptions
+}) => {
+  // Do something...
+}
+```
