@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Features from '@theme/components/Features.vue'
+import Features from '@theme-src/components/Features.vue'
 
 export default {
   props: ['page'],
@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style src="@theme/styles/main.styl" lang="stylus"></style>
+<style src="@theme-src/styles/main.styl" lang="stylus"></style>
 
 <style lang="stylus" scoped>
 .container {
