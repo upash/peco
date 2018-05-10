@@ -9,7 +9,8 @@ const {
   matchLocale,
   addIndexSuffix,
   getPageLink,
-  stripHTML
+  stripHTML,
+  writeIfChanged
 } = require('./utils')
 
 module.exports = class SourceFileSystem {
@@ -399,8 +400,7 @@ module.exports = class SourceFileSystem {
         )
 
         const start = index * perPage
-        await fs.ensureDir(path.dirname(outFile))
-        await fs.writeFile(
+        await writeIfChanged(
           outFile,
           JSON.stringify(
             Object.assign({}, data, {
@@ -414,8 +414,7 @@ module.exports = class SourceFileSystem {
               },
               posts: posts.slice(start, start + perPage)
             })
-          ),
-          'utf8'
+          )
         )
       })
     )

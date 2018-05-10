@@ -1,3 +1,6 @@
+const path = require('path')
+const fs = require('fs-extra')
+
 exports.hasMatchedLocale = (locales, link) => {
   return locales.some(locale => {
     const RE = new RegExp(`^/${locale}(/|$)`)
@@ -26,4 +29,17 @@ exports.getPageLink = (prefix, page) => {
 exports.stripHTML = html => {
   html = html || ''
   return html.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>?/gi, '').trim()
+}
+
+exports.writeIfChanged = async (filepath, data) => {
+  const exists = await fs.pathExists(filepath)
+  if (exists) {
+    const oldData = await fs.readFile(filepath, 'utf8')
+    if (data !== oldData) {
+      await fs.writeFile(filepath, data, 'utf8')
+    }
+  } else {
+    await fs.ensureDir(path.dirname(filepath))
+    await fs.writeFile(filepath, data, 'utf8')
+  }
 }
