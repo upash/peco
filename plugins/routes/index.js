@@ -10,7 +10,7 @@ module.exports = class RoutesPlugin {
     if (!this.routes) return
 
     api.hooks.add('onPrepare', async () => {
-      console.log('> Fetching data for routes')
+      console.log('> Fetching routes')
       let routes = this.routes
       if (typeof routes === 'function') {
         routes = await routes()
@@ -18,19 +18,23 @@ module.exports = class RoutesPlugin {
       await Promise.all(
         routes.map(async (route, index) => {
           let props
+          let prefetchFile
           if (route.props) {
             props = await route.props()
           }
-          const outFile = api.resolvePecoDir(
-            'data',
-            `__prefetch/route_${index}.json`
-          )
-          await fs.ensureDir(path.dirname(outFile))
-          await fs.writeFile(outFile, JSON.stringify(props), 'utf8')
+          if (props) {
+            const outFile = api.resolvePecoDir(
+              'data',
+              `__prefetch/route_${index}.json`
+            )
+            await fs.ensureDir(path.dirname(outFile))
+            await fs.writeFile(outFile, JSON.stringify(props), 'utf8')
+            prefetchFile = outFile.replace(api.resolvePecoDir(), 'dot-peco')
+          }
           api.routes.set(route.path, {
             type: 'component',
             path: `@base/${route.component}`,
-            prefetchFile: outFile.replace(api.resolvePecoDir(), 'dot-peco')
+            prefetchFile
           })
         })
       )
