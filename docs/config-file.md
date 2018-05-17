@@ -168,3 +168,10 @@ Generate feed, disabled by default. When it's `true`, default options will be us
   limit: 20
 }
 ```
+
+### chainWebpack
+
+- __Type__: `(config: WebpackChain, context: Context) => void`
+  - `Context`: `{ type: string }`
+
+Extend webpack config with `webpack-chain`.
