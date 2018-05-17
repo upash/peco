@@ -32,7 +32,7 @@ Let me explain how to use it in 20 words:
 
 For details please check out the [docs](./docs).
 
-Documentation website is work-in-progress.
+[Documentation website is work-in-progress](https://github.com/egojump/peco/issues/23).
 
 ## Build with Peco
 
