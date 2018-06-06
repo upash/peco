@@ -230,10 +230,12 @@ module.exports = class SourceFileSystem {
 
     const slug = filepath.replace(/^_posts\//, '').replace(/\.md$/, '')
 
-    const permalink = this.getPermalink(slug, {
-      type: attributes.type,
-      date: attributes.date
-    })
+    const permalink =
+      attributes.permalink ||
+      this.getPermalink(slug, {
+        type: attributes.type,
+        date: attributes.date
+      })
 
     const data = {
       slug,
