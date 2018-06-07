@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('upath')
 const fs = require('fs-extra')
 
 module.exports = class RoutesPlugin {

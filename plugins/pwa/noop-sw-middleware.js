@@ -1,5 +1,5 @@
 const fs = require('fs')
-const path = require('path')
+const path = require('upath')
 const resetScript = fs.readFileSync(path.join(__dirname, 'noop-sw.js'), 'utf-8')
 
 module.exports = function() {

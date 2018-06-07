@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('upath')
 
 module.exports = class OfflinePlugin {
   constructor(pwaEnabled) {

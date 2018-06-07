@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('upath')
 const glob = require('fast-glob')
 const fs = require('fs-extra')
 const chokidar = require('chokidar')
@@ -47,7 +47,7 @@ module.exports = class SourceFileSystem {
           }
         ],
         ...fileStats.map(stats => {
-          return [stats.path, { stats }]
+          return [path.normalize(stats.path), { stats }]
         })
       ])
 
@@ -62,14 +62,18 @@ module.exports = class SourceFileSystem {
 
         filesWatcher
           .on('add', async filepath => {
-            await this.onAddFile(filepath).catch(console.error)
+            await this.onAddFile(path.normalize(filepath)).catch(console.error)
           })
           .on('unlink', async filepath => {
-            await this.onDeleteFile(filepath).catch(console.error)
+            await this.onDeleteFile(path.normalize(filepath)).catch(
+              console.error
+            )
           })
           .on('change', async filepath => {
             // Use cached stats since we only need path and birthtime for now
-            await this.onChangeFile(filepath).catch(console.error)
+            await this.onChangeFile(path.normalize(filepath)).catch(
+              console.error
+            )
           })
       }
     })
