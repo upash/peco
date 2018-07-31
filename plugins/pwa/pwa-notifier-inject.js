@@ -53,7 +53,7 @@ event.$on('service-worker', ({ type, registration }) => {
         opts.updaterMessage ||
         'New contents are available, you can now refresh to apply updates!',
       elements: [button],
-      timeout: 0
+      timeout: 10000
     })
   }
 
