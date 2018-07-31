@@ -12,15 +12,18 @@ if (
   register(`${__PUBLIC_PATH__}sw.js`, {
     ready() {
       console.log('[peco:pwa] Service worker is active.')
-      event.$emit('service-worker', 'ready')
+      event.$emit('service-worker', { type: 'ready' })
     },
-    cached() {
+    registered(registration) {
+      event.$emit('service-worker', { type: 'registered', registration })
+    },
+    cached(registration) {
       console.log('[peco:pwa] Content has been cached for offline use.')
-      event.$emit('service-worker', 'cached')
+      event.$emit('service-worker', { type: 'cached', registration })
     },
-    updated() {
+    updated(registration) {
       console.log('[peco:pwa] Content updated.')
-      event.$emit('service-worker', 'updated')
+      event.$emit('service-worker', { type: 'updated', registration })
     },
     offline() {
       console.log(
@@ -28,12 +31,12 @@ if (
       )
       event.$emit('service-worker', 'offline')
     },
-    error(err) {
+    error(error) {
       console.error('[peco:pwa] Error during service worker registration:', err)
-      event.$emit('service-worker', 'error', err)
+      event.$emit('service-worker', { type: 'error', error })
       if (__GA_ID__) {
         ga('send', 'exception', {
-          exDescription: err.message,
+          exDescription: error.message,
           exFatal: false
         })
       }
