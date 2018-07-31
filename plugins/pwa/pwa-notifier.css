@@ -34,3 +34,16 @@
   height: 14px;
   margin-right: 10px;
 }
+
+.pwa-notifier-button.pwa-notifier-applying svg {
+  animation: pwa-notifier-applying 2s linear infinite;
+}
+
+@keyframes pwa-notifier-applying {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

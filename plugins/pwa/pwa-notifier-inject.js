@@ -41,11 +41,15 @@ event.$on('service-worker', ({ type, registration }) => {
     button.className = 'pwa-notifier-button'
     button.innerHTML = updateIcon + (opts.updaterButtonText || 'Refresh')
     button.addEventListener('click', () => {
+      button.classList.add('pwa-notifier-applying')
       skipWaiting(registration)
         .then(() => {
           window.location.reload()
         })
-        .catch(console.error)
+        .catch(err => {
+          button.classList.remove('pwa-notifier-applying')
+          console.error(err)
+        })
     })
 
     notifier = notify({
