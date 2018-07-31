@@ -16,6 +16,8 @@
   "scripts": {
     "test": "yarn lint",
     "example": "node bin/cli.js dev examples/blog",
+    "example:build": "node bin/cli.js build examples/blog",
+    "example:deploy": "surge -d https://peco-example.surge.sh -p examples/blog/.peco/website",
     "lint": "eslint plugins bin lib",
     "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove Peco? You can now donate to support the author:\\u001b[22m\\u001b[39m\\n> \\u001b[36mhttps://patreon.com/egoist\\u001b[39m')\""
   },
@@ -50,12 +52,13 @@
     "markdown-it-anchor": "^4.0.0",
     "markdown-it-highlight-lines": "^1.0.0",
     "mini-css-extract-plugin": "^0.4.0",
+    "native-toast": "^2.0.0",
     "p-limit": "^1.2.0",
     "pify": "^3.0.0",
     "postcss-loader": "^2.1.4",
     "prismjs": "^1.14.0",
     "promise-polyfill": "^7.1.2",
-    "register-service-worker": "^1.2.0",
+    "register-service-worker": "^1.4.1",
     "resolve-from": "^4.0.0",
     "time-fix-plugin": "^2.0.1",
     "toml": "^2.3.3",

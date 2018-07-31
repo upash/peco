@@ -60,10 +60,25 @@ The permanent link of posts.
 
 ### pwa
 
-- __Type__: `boolean`
+- __Type__: `boolean` `object`
 - __Default__: `true`
 
 Enable PWA (Progressive Web App) support.
+
+Optionally you can provide options for advanced usage:
+
+```js
+// Default values when `true`
+{
+  // Show notifier when updatesare  available
+  notifyUpdates: true,
+  // Always skip waiting for service worker to be activated
+  // You usually don't need this
+  skipWaiting: false,
+  updaterMessage: 'New contents are available...',
+  updaterButtonText: 'Refresh'
+}
+```
 
 ### googleAnalytics
 

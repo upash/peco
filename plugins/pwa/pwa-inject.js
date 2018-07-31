@@ -32,7 +32,7 @@ if (
       event.$emit('service-worker', 'offline')
     },
     error(error) {
-      console.error('[peco:pwa] Error during service worker registration:', err)
+      console.error('[peco:pwa] Error during service worker registration:', error)
       event.$emit('service-worker', { type: 'error', error })
       if (__GA_ID__) {
         ga('send', 'exception', {

@@ -1,0 +1,36 @@
+.native-toast {
+  text-align: left;
+  padding: 0;
+  overflow: hidden;
+}
+
+.native-toast-message {
+  padding: 10px 12px;
+}
+
+.pwa-notifier-button {
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: inherit;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid #ffffff38;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+}
+
+.pwa-notifier-button:hover {
+  background: #2d29298a;
+  border-color: #2b2b2b38;
+}
+
+.pwa-notifier-button svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+}
