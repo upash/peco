@@ -36,6 +36,7 @@ module.exports = class PwaPlugin {
       const { generateSW } = require('workbox-build')
       await generateSW({
         swDest: api.resolvePecoDir('website', 'sw.js'),
+        importWorkboxFrom: 'local',
         importScripts: [
           api.clientConfig.output.get('publicPath') + 'sw-events.js'
         ],
