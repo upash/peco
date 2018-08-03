@@ -61,11 +61,11 @@ The permanent link of posts.
 ### pwa
 
 - __Type__: `boolean` `object`
-- __Default__: `true`
+- __Default__: `false`
 
-Enable PWA (Progressive Web App) support.
+PWA (Progressive Web App) support.
 
-Optionally you can provide options for advanced usage:
+You can set enable it by setting this option to `true` or using an object for advanced usage:
 
 ```js
 // Default values when `true`

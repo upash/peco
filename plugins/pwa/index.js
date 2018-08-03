@@ -3,7 +3,7 @@ const fs = require('fs-extra')
 
 module.exports = class PwaPlugin {
   constructor(pwa) {
-    this.pwaEnabled = pwa !== false
+    this.pwaEnabled = Boolean(pwa)
     this.pwaOptions = Object.assign(
       {
         notifyUpdates: true,
