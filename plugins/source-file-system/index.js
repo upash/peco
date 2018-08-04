@@ -257,7 +257,7 @@ module.exports = class SourceFileSystem {
   getPermalink(slug, { date, type } = {}) {
     slug = encodeURI(slug)
 
-    if (type === 'post') {
+    if (type === 'post' || type === 'page') {
       const d = new Date(date)
       const year = d.getFullYear()
       const iMonth = d.getMonth() + 1
@@ -286,7 +286,7 @@ module.exports = class SourceFileSystem {
 
       let link =
         langPrefix +
-        this.api.config.permalink
+        this.api.config.permalink[type]
           .replace(/:year/, year)
           .replace(/:month/, month)
           .replace(/:i_month/, iMonth)
