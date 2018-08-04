@@ -1,8 +1,6 @@
-<p align="center">
-<img src="https://cdn.rawgit.com/egoist/fde30f7f3eae29d66b52736367f0267c/raw/95fe77f4401a2df004094d7ef8d1e3d93de98480/peco.svg" alt="temp logo, are you a designer? you can help! Peco deserves a better logo :D" width="500"></p>
+# Peco
 
-<p align="center"><a href="https://npmjs.com/package/peco"><img src="https://img.shields.io/npm/v/peco.svg?style=for-the-badge" alt="NPM version"></a> <a href="https://npmjs.com/package/peco"><img src="https://img.shields.io/npm/dm/peco.svg?style=for-the-badge" alt="NPM downloads"></a> <br><a href="https://circleci.com/gh/uchudenpa/peco"><img src="https://img.shields.io/circleci/project/uchudenpa/peco/master.svg?style=for-the-badge" alt="Build Status"></a> <a href="./BACKERS.md"><img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=for-the-badge" alt="donate"></a> <a href="https://spectrum.chat/peco"><img src="https://img.shields.io/badge/chat-on%20spectrum-7b16ff.svg?style=for-the-badge" alt="chat"></a> <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge"></a></p>
-
+[![npm version](https://badgen.net/npm/v/peco)](https://npmjs.com/peco) [![circleci](https://badgen.net/circleci/github/uchudenpa/peco/master)](https://circleci.com/gh/uchudenpa/peco) ![status](https://badgen.net/badge/status/beta/pink)
 
 ## What is this?
 
@@ -30,9 +28,7 @@ Let me explain how to use it in 20 words:
 - `peco dev [directory]` to run it
 - `peco build [directory]` to build it
 
-For details please check out the [docs](./docs).
-
-[Documentation website is work-in-progress](https://github.com/uchudenpa/peco/issues/23).
+For details please check out the [docs](https://peco.upa.sh), please not that the documentation is still work-in-progress.
 
 ## Build with Peco
 
