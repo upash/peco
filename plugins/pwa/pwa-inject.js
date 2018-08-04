@@ -4,7 +4,6 @@ import event from '@app/event'
 if (
   process.browser &&
   process.env.NODE_ENV === 'production' &&
-  __PWA_ENABLED__ &&
   window.location.protocol === 'https:'
 ) {
   const { register } = require('register-service-worker')

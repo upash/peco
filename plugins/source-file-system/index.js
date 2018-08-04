@@ -106,6 +106,8 @@ module.exports = class SourceFileSystem {
   createMarkdownRenderer() {
     const Markdown = require('markdown-it')
 
+    const { markdown } = this.api.config
+
     const renderer = new Markdown({
       html: true,
       linkify: true,
@@ -114,12 +116,11 @@ module.exports = class SourceFileSystem {
     renderer.use(require('./markdown/excerpt'))
     renderer.use(require('./markdown/hoist-tags'))
     renderer.use(require('./markdown/extract-title'))
-
-    const { markdown } = this.api.config
-
-    if (markdown.highlightLines !== false) {
-      renderer.use(require('markdown-it-highlight-lines'))
-    }
+    renderer.use(require('./markdown/escape-interpolation'))
+    renderer.use(require('./markdown/highlight-lines'), {
+      highlightedLineBackground: markdown.highlightedLineBackground,
+      hideLanguage: markdown.hideLanguage
+    })
 
     if (markdown.anchor !== false) {
       let slugify

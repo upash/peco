@@ -14,6 +14,8 @@ module.exports = class PwaPlugin {
   }
 
   apply(api) {
+    if (!this.pwaEnabled) return
+
     api.chainWebpack(config => {
       config.plugin('constants').tap(([options]) => [
         Object.assign(options, {
@@ -24,7 +26,7 @@ module.exports = class PwaPlugin {
     })
 
     api.enhanceAppFiles.add(path.join(__dirname, 'pwa-inject.js'))
-    if (this.pwaEnabled && this.pwaOptions.notifyUpdates) {
+    if (this.pwaOptions.notifyUpdates) {
       api.enhanceAppFiles.add(path.join(__dirname, 'pwa-notifier-inject.js'))
     }
 

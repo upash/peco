@@ -1,0 +1,54 @@
+.code-line {
+  display: block;
+  padding: 0 1.575rem;
+  color: transparent;
+}
+
+.code-line.highlighted {
+  background-color: #ccc;
+}
+
+.pre-wrapper {
+  line-height: 1.7;
+  position: relative;
+}
+
+.pre-wrapper:before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 13px;
+  opacity: .5;
+}
+
+.code-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.575rem 0;
+}
+
+pre {
+  padding: 1.575rem;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  overflow: auto;
+}
+
+pre, .code-mask {
+  font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+  font-size: 14px;
+  line-height: 1.7;
+
+  /* soft wrap */
+  /* white-space: pre-wrap;
+  word-break: break-word; */
+}
+
+code {
+  font-size: 14px;
+  font-family: source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
+}
