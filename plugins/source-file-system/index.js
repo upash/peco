@@ -9,7 +9,6 @@ const {
   matchLocale,
   addIndexSuffix,
   getPageLink,
-  stripHTML,
   writeIfChanged
 } = require('./utils')
 
@@ -246,9 +245,7 @@ module.exports = class SourceFileSystem {
       permalink,
       attributes,
       body: html,
-      excerpt: attributes.compileTemplate
-        ? stripHTML(env.excerpt)
-        : env.excerpt,
+      excerpt: env.excerpt,
       hoistedTags: env.hoistedTags
     }
     return data

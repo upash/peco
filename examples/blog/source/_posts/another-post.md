@@ -1,11 +1,8 @@
 ---
 title: Another Post
 date: 2018/04/29
-compileTemplate: true
 categories:
   - foo
-data:
-  count: 0
 ---
 
 <button v-on:click="count++">{{ count + 1 }}</button>
@@ -18,6 +15,16 @@ button {
   font-size: 4rem;
 }
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      count: 0
+    }
+  }
+}
+</script>
 
 __Commodo__ hehe aliquip ea incididunt minim anim eiusmod anim ipsum deserunt laboris. Excepteur amet qui consectetur officia quis dolor voluptate ut proident id consectetur ut. Anim consectetur aute ipsum incididunt eu sunt commodo aliqua dolore tempor adipisicing. Commodo eu consectetur ullamco in duis.
 

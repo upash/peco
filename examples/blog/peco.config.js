@@ -20,7 +20,6 @@ module.exports = {
   description: 'Humbly powered by Peco!!!',
   permalink: ':year/:month/:day/:slug.html',
   url: 'https://example.com',
-  theme: './theme',
 
   feed: true,
 

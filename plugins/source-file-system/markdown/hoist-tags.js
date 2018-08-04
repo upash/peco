@@ -1,5 +1,5 @@
 module.exports = md => {
-  const RE = /^<style(?=(\s|>|$))/i
+  const RE = /^<(style|script)(?=(\s|>|$))/i
 
   // eslint-disable-next-line camelcase
   md.renderer.rules.html_block = (tokens, idx, options, env) => {

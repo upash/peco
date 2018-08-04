@@ -1,5 +1,4 @@
 const pecoPkg = require('../../../package')
-const { stripHTML } = require('../utils')
 
 const echo = (cond, value) => (cond ? value : '')
 
@@ -25,10 +24,8 @@ module.exports = ({ siteData, feedURL, posts }) =>
   }">Peco</generator>
   ${posts
     .map(post => {
-      const body = post.attributes.compileTemplate
-        ? stripHTML(post.body)
-        : post.body
-      const excerpt = post.excerpt || post.body.slice(0, 240)
+      const body = post.body // Should strip vue-specific HTML or not?
+      const excerpt = post.excerpt || body.slice(0, 240)
 
       return `<entry>
       <title>${post.attributes.title}</title>
