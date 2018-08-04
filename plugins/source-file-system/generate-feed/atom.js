@@ -19,7 +19,7 @@ module.exports = ({ siteData, feedURL, posts }) =>
       ${echo(siteData.email, `<email>${siteData.email}</email>`)}
     </author>`
   )}
-  <generator uri="http://github.com/egojump/peco/" version="${
+  <generator uri="http://github.com/uchudenpa/peco/" version="${
     pecoPkg.version
   }">Peco</generator>
   ${posts
