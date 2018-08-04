@@ -2,13 +2,11 @@
 
 [![npm version](https://badgen.net/npm/v/peco)](https://npmjs.com/peco) [![circleci](https://badgen.net/circleci/github/uchudenpa/peco/master)](https://circleci.com/gh/uchudenpa/peco) ![status](https://badgen.net/badge/status/beta/pink)
 
-## What is this?
+## Introduction
 
 Peco is a static website generator powered by modern web tooling, like webpack and Vue.js. It generates static HTML files and assets at build time, once the generated website is loaded on the client-side, it runs as an SPA.
 
-## How is it?
-
-It is good. I don't think I'll ever use Hexo again.
+Check out the [documentation](https://peco.upa.sh) for details.
 
 ## Installation
 
@@ -27,8 +25,6 @@ Let me explain how to use it in 20 words:
 - `source/_posts/*.md` is your posts
 - `peco dev [directory]` to run it
 - `peco build [directory]` to build it
-
-For details please check out the [docs](https://peco.upa.sh), please not that the documentation is still work-in-progress.
 
 ## Build with Peco
 
