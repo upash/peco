@@ -251,6 +251,8 @@ module.exports = class SourceFileSystem {
 
   getPermalink(permalinkPattern, slug, { date, type } = {}) {
     permalinkPattern = permalinkPattern || this.api.config.permalink[type]
+    // Remove leading slash
+    permalinkPattern = permalinkPattern.replace(/^\//, '')
     slug = encodeURI(slug)
 
     if (type === 'post' || type === 'page') {
