@@ -233,12 +233,10 @@ module.exports = class SourceFileSystem {
 
     const slug = filepath.replace(/^_posts\//, '').replace(/\.md$/, '')
 
-    const permalink =
-      attributes.permalink ||
-      this.getPermalink(slug, {
-        type: attributes.type,
-        date: attributes.date
-      })
+    const permalink = this.getPermalink(attributes.permalink, slug, {
+      type: attributes.type,
+      date: attributes.date
+    })
 
     const data = {
       slug,
@@ -251,7 +249,8 @@ module.exports = class SourceFileSystem {
     return data
   }
 
-  getPermalink(slug, { date, type } = {}) {
+  getPermalink(permalinkPattern, slug, { date, type } = {}) {
+    permalinkPattern = permalinkPattern || this.api.config.permalink[type]
     slug = encodeURI(slug)
 
     if (type === 'post' || type === 'page') {
@@ -283,7 +282,7 @@ module.exports = class SourceFileSystem {
 
       let link =
         langPrefix +
-        this.api.config.permalink[type]
+        permalinkPattern
           .replace(/:year/, year)
           .replace(/:month/, month)
           .replace(/:i_month/, iMonth)
