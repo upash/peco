@@ -1,6 +1,6 @@
 {
   "name": "peco",
-  "version": "0.1.16",
+  "version": "0.2.0",
   "description": "Static website generator for humans",
   "repository": {
     "url": "egoist/peco",
