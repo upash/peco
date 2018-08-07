@@ -16,7 +16,7 @@
       <div
         class="content"
         v-else>
-        <slot name="body"></slot>
+        <slot name="default"></slot>
       </div>
       <div class="tags" v-if="page.attributes.tags">
         <router-link
