@@ -1,5 +1,5 @@
 /* eslint-disable */
-import event from '@app/event'
+import event from '#app/event'
 
 if (
   process.browser &&

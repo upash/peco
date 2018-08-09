@@ -1,5 +1,5 @@
 /* globals __PWA_OPTIONS__, window, document, MessageChannel */
-import event from '@app/event'
+import event from '#app/event'
 import notify from 'native-toast'
 import 'native-toast/dist/native-toast.css'
 import './pwa-notifier.css'

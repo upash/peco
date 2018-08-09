@@ -33,7 +33,7 @@ module.exports = class RoutesPlugin {
           }
           api.routes.set(route.path, {
             type: 'component',
-            path: `@base/${route.component}`,
+            path: `#base/${route.component}`,
             prefetchFile
           })
         })

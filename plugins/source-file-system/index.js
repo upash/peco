@@ -88,13 +88,13 @@ module.exports = class SourceFileSystem {
 
     const file = this.files.get(filepath)
     this.api.routes.set(file.data.permalink, {
-      path: `dot-peco/data/${filepath}.peson`,
+      path: `#data/source/${filepath}.peson`,
       type: 'peson'
     })
   }
 
   removeRouteByPath(filepath) {
-    filepath = `dot-peco/data/${filepath}.peson`
+    filepath = `#data/source/${filepath}.peson`
     for (const [_, item] of this.api.routes.entries()) {
       if (item.path === filepath) {
         this.api.routes.delete(_)
@@ -170,7 +170,7 @@ module.exports = class SourceFileSystem {
 
         this.files.get(filepath).data = data
 
-        const outFile = this.api.resolvePecoDir('data', `${filepath}.peson`)
+        const outFile = this.api.resolveDataDir('source', `${filepath}.peson`)
         await fs.ensureDir(path.dirname(outFile))
         await fs.writeFile(outFile, JSON.stringify(data), 'utf8')
       })
