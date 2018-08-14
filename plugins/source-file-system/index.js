@@ -34,7 +34,6 @@ class SourceFileSystem {
         [
           'index.md',
           {
-            isVirtual: true,
             data: {
               attributes: {
                 type: 'index',
@@ -163,11 +162,7 @@ class SourceFileSystem {
 
     await Promise.all(
       files.map(async ([filepath, file]) => {
-        // eslint-disable-next-line no-multi-assign
-        const data = file.isVirtual
-          ? file.data
-          : await this.getFileData(filepath, file.stats)
-
+        const data = file.data || (await this.getFileData(filepath, file.stats))
         this.files.get(filepath).data = data
 
         const outFile = this.api.resolveDataDir('source', `${filepath}.peson`)
