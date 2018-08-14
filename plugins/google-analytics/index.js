@@ -1,6 +1,6 @@
 const path = require('upath')
 
-module.exports = class GoogleAnalyticsPlugin {
+class GoogleAnalyticsPlugin {
   constructor(options) {
     this.ga = typeof options === 'string' ? { id: options } : options || {}
   }
@@ -17,3 +17,7 @@ module.exports = class GoogleAnalyticsPlugin {
     api.enhanceAppFiles.add(path.join(__dirname, 'google-analytics-inject.js'))
   }
 }
+
+GoogleAnalyticsPlugin.pluginName = 'builtin:google-analytics'
+
+module.exports = GoogleAnalyticsPlugin

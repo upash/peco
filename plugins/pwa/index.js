@@ -1,7 +1,7 @@
 const path = require('upath')
 const fs = require('fs-extra')
 
-module.exports = class PwaPlugin {
+class PwaPlugin {
   constructor(pwa) {
     this.pwaEnabled = Boolean(pwa)
     this.pwaOptions = Object.assign(
@@ -69,3 +69,7 @@ module.exports = class PwaPlugin {
     })
   }
 }
+
+PwaPlugin.pluginName = 'builtin:pwa'
+
+module.exports = PwaPlugin

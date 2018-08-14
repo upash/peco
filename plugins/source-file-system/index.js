@@ -12,7 +12,7 @@ const {
   writeIfChanged
 } = require('./utils')
 
-module.exports = class SourceFileSystem {
+class SourceFileSystem {
   apply(api) {
     this.api = api
 
@@ -426,3 +426,7 @@ module.exports = class SourceFileSystem {
     )
   }
 }
+
+SourceFileSystem.pluginName = 'builtin:source-file-system'
+
+module.exports = SourceFileSystem

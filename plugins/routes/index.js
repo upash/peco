@@ -1,7 +1,7 @@
 const path = require('upath')
 const fs = require('fs-extra')
 
-module.exports = class RoutesPlugin {
+class RoutesPlugin {
   constructor(routes) {
     this.routes = routes
   }
@@ -43,3 +43,7 @@ module.exports = class RoutesPlugin {
     })
   }
 }
+
+RoutesPlugin.pluginName = 'builtin:routes'
+
+module.exports = RoutesPlugin
