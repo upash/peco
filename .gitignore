@@ -1,5 +1,4 @@
 node_modules
-# generated data files at build time
-.peco/data
-# generated website
-.peco/website
+
+**/.peco/data
+**/.peco/website
