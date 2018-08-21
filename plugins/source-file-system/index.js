@@ -174,7 +174,10 @@ class SourceFileSystem {
 
   getPosts() {
     return this.getPages(file => {
-      return file.data.attributes.type === 'post'
+      return (
+        file.data.attributes.type === 'post' &&
+        file.data.attributes.published !== false
+      )
     }).sort((a, b) => {
       return new Date(a.attributes.date) > new Date(b.attributes.date) ? -1 : 1
     })
