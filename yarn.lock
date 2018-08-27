@@ -4726,10 +4726,6 @@ markdown-it-anchor@^4.0.0:
   dependencies:
     string "^3.3.3"
 
-markdown-it-highlight-lines@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/markdown-it-highlight-lines/-/markdown-it-highlight-lines-1.0.0.tgz#d6b56aca5ab9674cf140214f5591749e87ecbc39"
-
 markdown-it@^8.4.1:
   version "8.4.1"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.1.tgz#206fe59b0e4e1b78a7c73250af9b34a4ad0aaf44"
