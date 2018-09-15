@@ -1,3 +1,6 @@
+> **Use this at your own risk, we will start rewriting this soon..**
+
+
 # Peco
 
 [![npm version](https://badgen.net/npm/v/peco)](https://npmjs.com/peco) [![circleci](https://badgen.net/circleci/github/uchudenpa/peco/master)](https://circleci.com/gh/uchudenpa/peco) ![status](https://badgen.net/badge/status/beta/pink)
