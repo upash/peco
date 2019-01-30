@@ -59,6 +59,7 @@
     "promise-polyfill": "^7.1.2",
     "register-service-worker": "^1.4.1",
     "resolve-from": "^4.0.0",
+    "terser-webpack-plugin": "^1.2.1",
     "time-fix-plugin": "^2.0.1",
     "toml": "^2.3.3",
     "upath": "^1.1.0",
